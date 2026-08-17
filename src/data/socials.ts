@@ -6,12 +6,12 @@ export const socials = [
   },
   {
     name: 'LinkedIn',
-    url: 'https://www.linkedin.com/in/raflimuhammadd',
+    url: 'https://www.linkedin.com/in/raflimuhammadd/',
     icon: 'linkedin',
   },
   {
     name: 'Medium',
-    url: 'https://medium.com/@raflimuhammadd',
+    url: 'https://medium.com/@rafhmuhammaddd09',
     icon: 'medium',
   },
   {
