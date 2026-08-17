@@ -3,36 +3,10 @@ import Section from '../ui/Section.astro';
 import Card from '../ui/Card.astro';
 import Badge from '../ui/Badge.astro';
 import Button from '../ui/Button.astro';
+import { getCollection } from 'astro:content';
 
-const projects = [
-  {
-    id: 'web-app',
-    title: 'E-Commerce Platform',
-    category: 'Web Application',
-    description: 'Full-stack e-commerce platform with real-time inventory management and payment integration.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Stripe', 'Docker'],
-    categoryColor: 'accent',
-    slug: 'ecommerce-platform',
-  },
-  {
-    id: 'cloud-infra',
-    title: 'Cloud Infrastructure Migration',
-    category: 'Cloud Engineering',
-    description: 'Architected and migrated legacy systems to AWS with auto-scaling and disaster recovery.',
-    tech: ['AWS', 'Terraform', 'Kubernetes', 'CI/CD', 'Monitoring'],
-    categoryColor: 'secondary',
-    slug: 'cloud-migration',
-  },
-  {
-    id: 'api-dev',
-    title: 'Real-time API Service',
-    category: 'API Development',
-    description: 'Built high-performance REST API with caching, rate limiting, and comprehensive documentation.',
-    tech: ['Express.js', 'PostgreSQL', 'Redis', 'Jest', 'Swagger'],
-    categoryColor: 'muted',
-    slug: 'realtime-api',
-  },
-];
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects.filter(p => p.data.featured).slice(0, 3);
 ---
 
 <Section id="projects" bgColor="bg-neo-bg" pattern="dots">
@@ -50,33 +24,34 @@ const projects = [
 
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      {projects.map((project, index) => (
+      {featuredProjects.map((project, index) => (
         <Card class={`flex flex-col h-full ${index === 1 ? 'lg:col-span-1 lg:row-span-2' : ''} ${['rotate-2', '-rotate-1', 'rotate-1'][index]}`}>
           <div class="flex-1 flex flex-col gap-4 p-6">
-            <!-- Badge -->
-            <Badge variant={project.categoryColor as any}>{project.category}</Badge>
+            <Badge variant={
+              project.data.category === 'web' ? 'accent' :
+              project.data.category === 'cloud' ? 'secondary' :
+              'muted'
+            }>
+              {project.data.category}
+            </Badge>
 
-            <!-- Title -->
             <h3 class="font-black text-2xl md:text-3xl uppercase leading-tight">
-              {project.title}
+              {project.data.title}
             </h3>
 
-            <!-- Description -->
             <p class="font-bold text-base leading-relaxed flex-1">
-              {project.description}
+              {project.data.description}
             </p>
 
-            <!-- Tech Stack -->
             <div class="flex flex-wrap gap-2 pt-4 border-t-4 border-neo-black">
-              {project.tech.map((tech) => (
+              {project.data.techStack.slice(0, 5).map((tech) => (
                 <span class="bg-neo-bg border-2 border-neo-black px-3 py-1 text-xs font-bold uppercase">
                   {tech}
                 </span>
               ))}
             </div>
 
-            <!-- CTA -->
-            <Button href={`/projects/${project.slug}`} variant="outline" size="md" class="w-full mt-4">
+            <Button href={`/projects/${project.data.slug}`} variant="outline" size="md" class="w-full mt-4">
               View Case Study →
             </Button>
           </div>

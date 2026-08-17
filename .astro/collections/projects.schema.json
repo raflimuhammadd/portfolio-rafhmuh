@@ -19,12 +19,18 @@
         "academic"
       ]
     },
+    "year": {
+      "type": "number"
+    },
     "featured": {
       "default": false,
       "type": "boolean"
     },
-    "year": {
-      "type": "number"
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
     },
     "techStack": {
       "type": "array",
@@ -40,14 +46,8 @@
         },
         "demo": {
           "type": "string"
-        },
-        "caseStudy": {
-          "type": "string"
         }
       }
-    },
-    "image": {
-      "type": "string"
     },
     "$schema": {
       "type": "string"
@@ -58,8 +58,9 @@
     "slug",
     "category",
     "year",
+    "description",
+    "image",
     "techStack",
-    "links",
-    "image"
+    "links"
   ]
 }

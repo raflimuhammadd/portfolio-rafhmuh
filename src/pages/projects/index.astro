@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/site/Header.astro';
+import Footer from '../../components/site/Footer.astro';
+import Card from '../../components/ui/Card.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
+---
+
+<BaseLayout title="All Projects | Rafli Muhammad" description="Browse all my projects across web development, cloud engineering, API development, machine learning, personal projects, and academic work.">
+  <Header />
+  
+  <main class="min-h-screen bg-neo-bg py-16 md:py-24">
+    <div class="container mx-auto max-w-7xl px-4 md:px-6">
+      <!-- Header -->
+      <div class="mb-12 space-y-6">
+        <div class="space-y-2">
+          <Badge variant="accent" rotate>Portfolio</Badge>
+          <h1 class="font-black text-5xl uppercase md:text-7xl">All Projects</h1>
+        </div>
+        <p class="font-bold text-xl max-w-3xl">
+          A comprehensive collection of my work across full-stack development, cloud infrastructure, and personal projects.
+        </p>
+      </div>
+
+      <!-- Stats -->
+      <div class="mb-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+        <div class="border-4 border-neo-black bg-neo-white p-4 shadow-neo-md">
+          <p class="font-black text-3xl">{sortedProjects.length}</p>
+          <p class="font-bold text-xs uppercase tracking-widest">Total Projects</p>
+        </div>
+        <div class="border-4 border-neo-black bg-neo-secondary p-4 shadow-neo-md">
+          <p class="font-black text-3xl">
+            {sortedProjects.filter(p => p.data.featured).length}
+          </p>
+          <p class="font-bold text-xs uppercase tracking-widest">Featured</p>
+        </div>
+        <div class="border-4 border-neo-black bg-neo-muted p-4 shadow-neo-md">
+          <p class="font-black text-3xl">
+            {new Set(sortedProjects.map(p => p.data.category)).size}
+          </p>
+          <p class="font-bold text-xs uppercase tracking-widest">Categories</p>
+        </div>
+        <div class="border-4 border-neo-black bg-neo-accent p-4 shadow-neo-md">
+          <p class="font-black text-3xl">
+            {sortedProjects[0]?.data.year}
+          </p>
+          <p class="font-bold text-xs uppercase tracking-widest">Latest Year</p>
+        </div>
+      </div>
+
+      <!-- Category Filters -->
+      <div class="mb-8">
+        <h2 class="mb-4 font-black text-2xl uppercase">Filter by Category</h2>
+        <div class="flex flex-wrap gap-2">
+          <button class="border-4 border-neo-black bg-neo-white px-4 py-2 font-bold text-sm uppercase tracking-wide hover:bg-neo-secondary" data-category="all">
+            All
+          </button>
+          {['web', 'cloud', 'api', 'ml', 'personal', 'academic'].map((cat) => (
+            <button 
+              class="border-4 border-neo-black bg-neo-white px-4 py-2 font-bold text-sm uppercase tracking-wide hover:bg-neo-muted" 
+              data-category={cat}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3" id="projects-grid">
+        {sortedProjects.map((project, index) => (
+          <Card class={`h-full ${['rotate-1', '-rotate-1', 'rotate-2'][index % 3]}`}>
+            <div class="flex h-full flex-col gap-4 p-6">
+              <!-- Badge -->
+              <div class="flex items-center justify-between">
+                <Badge variant={
+                  project.data.category === 'web' ? 'accent' :
+                  project.data.category === 'cloud' ? 'secondary' :
+                  project.data.category === 'api' ? 'muted' :
+                  'accent'
+                }>
+                  {project.data.category}
+                </Badge>
+                {project.data.featured && (
+                  <Badge variant="black" class="text-xs">⭐ Featured</Badge>
+                )}
+              </div>
+
+              <!-- Title -->
+              <h2 class="font-black text-2xl uppercase leading-tight">
+                {project.data.title}
+              </h2>
+
+              <!-- Year -->
+              <p class="font-bold text-sm uppercase tracking-widest text-neo-muted">
+                {project.data.year}
+              </p>
+
+              <!-- Tech Preview -->
+              <div class="flex flex-wrap gap-1">
+                {project.data.techStack.slice(0, 3).map((tech) => (
+                  <span class="border border-neo-black bg-neo-bg px-2 py-1 text-xs font-bold uppercase">
+                    {tech}
+                  </span>
+                ))}
+                {project.data.techStack.length > 3 && (
+                  <span class="border border-neo-black bg-neo-bg px-2 py-1 text-xs font-bold uppercase">
+                    +{project.data.techStack.length - 3}
+                  </span>
+                )}
+              </div>
+
+              <!-- CTA -->
+              <div class="mt-4">
+                <Button 
+                  href={`/projects/${project.data.slug}`} 
+                  variant="outline" 
+                  class="w-full"
+                >
+                  View Details →
+                </Button>
+              </div>
+            </div>
+          </Card>
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      {sortedProjects.length === 0 && (
+        <div class="border-4 border-neo-black bg-neo-white p-12 text-center shadow-neo-lg">
+          <p class="font-black text-3xl mb-4">No Projects Found</p>
+          <p class="font-bold text-lg mb-6">Check back soon for new projects!</p>
+          <Button href="/#projects" variant="primary">
+            Back to Home
+          </Button>
+        </div>
+      )}
+    </div>
+  </main>
+
+  <Footer />
+
+  <script>
+    // Simple category filtering
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('[data-category]');
+      const projectsGrid = document.getElementById('projects-grid');
+      const projectCards = Array.from(projectsGrid.children);
+      
+      filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const category = button.dataset.category;
+          
+          // Update active button
+          filterButtons.forEach(btn => {
+            btn.classList.remove('bg-neo-accent', 'text-neo-black');
+            btn.classList.add('bg-neo-white');
+          });
+          button.classList.remove('bg-neo-white');
+          button.classList.add('bg-neo-accent', 'text-neo-black');
+          
+          // Filter projects
+          projectCards.forEach(card => {
+            const projectCategory = card.querySelector('span')?.textContent?.toLowerCase();
+            
+            if (category === 'all' || projectCategory === category) {
+              card.style.display = 'block';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+</BaseLayout>

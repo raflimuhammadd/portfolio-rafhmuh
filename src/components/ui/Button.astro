@@ -3,6 +3,8 @@ interface Props {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   href?: string;
+  target?: string;
+  type?: 'button' | 'submit' | 'reset';
   class?: string;
 }
 
@@ -10,6 +12,8 @@ const {
   variant = 'primary', 
   size = 'md',
   href,
+  target,
+  type = 'button',
   class: className = ''
 } = Astro.props;
 
@@ -32,11 +36,11 @@ const classes = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`
 ---
 
 {href ? (
-  <a href={href} class={classes}>
+  <a href={href} class={classes} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined}>
     <slot />
   </a>
 ) : (
-  <button class={classes}>
+  <button type={type} class={classes}>
     <slot />
   </button>
 )}

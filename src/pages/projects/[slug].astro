@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/site/Header.astro';
+import Footer from '../../components/site/Footer.astro';
+import Badge from '../../components/ui/Badge.astro';
+import Button from '../../components/ui/Button.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.data.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<BaseLayout title={`${project.data.title} | Rafli Muhammad`} description={project.data.title}>
+  <Header />
+  
+  <main class="min-h-screen bg-neo-bg">
+    <!-- Hero Section -->
+    <section class="py-16 md:py-24">
+      <div class="container mx-auto max-w-5xl px-4 md:px-6">
+        <!-- Breadcrumb -->
+        <div class="mb-6">
+          <a href="/" class="font-bold hover:underline">Home</a>
+          <span class="mx-2 font-bold">→</span>
+          <a href="/#projects" class="font-bold hover:underline">Projects</a>
+          <span class="mx-2 font-bold">→</span>
+          <span class="font-bold text-neo-accent">{project.data.title}</span>
+        </div>
+
+        <!-- Badges -->
+        <div class="mb-8 flex flex-wrap gap-3">
+          <Badge variant="accent">{project.data.category.toUpperCase()}</Badge>
+          <Badge variant="secondary">{project.data.year}</Badge>
+          {project.data.featured && (
+            <Badge variant="black" rotate>Featured</Badge>
+          )}
+        </div>
+
+        <!-- Title -->
+        <h1 class="mb-6 font-black text-5xl uppercase leading-none md:text-7xl">
+          {project.data.title}
+        </h1>
+
+        <!-- Hero Image Placeholder -->
+        <div class="mb-12 flex h-64 items-center justify-center border-8 border-neo-black bg-neo-secondary shadow-neo-xl md:h-80">
+          <p class="font-black text-2xl uppercase tracking-widest opacity-50">
+            PROJECT IMAGE
+          </p>
+        </div>
+
+        <!-- Quick Info -->
+        <div class="mb-12 border-4 border-neo-black bg-neo-white p-6 shadow-neo-lg">
+          <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+            <div>
+              <h3 class="mb-2 font-black text-sm uppercase tracking-widest">Tech Stack</h3>
+              <div class="flex flex-wrap gap-2">
+                {project.data.techStack.map((tech) => (
+                  <span class="border-2 border-neo-black bg-neo-bg px-2 py-1 text-xs font-bold uppercase">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 class="mb-2 font-black text-sm uppercase tracking-widest">Category</h3>
+              <p class="font-bold text-lg">{project.data.category}</p>
+            </div>
+            <div>
+              <h3 class="mb-2 font-black text-sm uppercase tracking-widest">Year</h3>
+              <p class="font-bold text-lg">{project.data.year}</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <article class="mb-12 border-4 border-neo-black bg-neo-white p-8 shadow-neo-xl">
+          <Content />
+        </article>
+
+        <!-- Links -->
+        <div class="flex flex-wrap gap-4">
+          {project.data.links.github && (
+            <Button href={project.data.links.github} variant="outline" target="_blank">
+              View on GitHub
+            </Button>
+          )}
+          {project.data.links.demo && (
+            <Button href={project.data.links.demo} variant="primary" target="_blank">
+              Live Demo
+            </Button>
+          )}
+          <Button href="/#projects" variant="secondary">
+            ← Back to Projects
+          </Button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* Markdown styling for project content */
+  .astro-content {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .astro-content h2 {
+    @apply mt-8 mb-4 border-b-4 border-neo-black pb-2 font-black text-3xl uppercase;
+  }
+  
+  .astro-content h3 {
+    @apply mt-6 mb-3 font-black text-2xl uppercase;
+  }
+  
+  .astro-content p {
+    @apply mb-4 font-bold leading-relaxed text-lg;
+  }
+  
+  .astro-content ul {
+    @apply mb-4 list-inside list-disc font-bold;
+  }
+  
+  .astro-content li {
+    @apply mb-2;
+  }
+  
+  .astro-content strong {
+    @apply font-black text-neo-accent;
+  }
+</style>
