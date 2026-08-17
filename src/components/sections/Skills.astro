@@ -1,0 +1,39 @@
+---
+import Section from '../ui/Section.astro';
+import Badge from '../ui/Badge.astro';
+import { skills } from '../../data/skills';
+---
+
+<Section id="skills" bgColor="bg-neo-secondary">
+  <div class="space-y-12">
+    <!-- Header -->
+    <div class="space-y-4">
+      <Badge variant="black">Skills & Expertise</Badge>
+      <h2 class="font-black text-5xl md:text-6xl lg:text-7xl uppercase leading-tight">
+        Tech Stack
+      </h2>
+      <p class="font-bold text-xl max-w-2xl">
+        A comprehensive toolkit for building modern web applications and cloud infrastructure
+      </p>
+    </div>
+
+    <!-- Skills Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {Object.entries(skills).map(([category, items]) => (
+        <div class="border-4 border-neo-black bg-neo-white p-6 shadow-neo-lg hover:shadow-neo-xl hover:-translate-y-2 transition-all">
+          <h3 class="font-black text-lg uppercase mb-4 border-b-4 border-neo-black pb-2 capitalize">
+            {category}
+          </h3>
+          <ul class="space-y-2">
+            {items.map((item) => (
+              <li class="font-bold text-sm flex items-start gap-2">
+                <span class="text-neo-accent font-black mt-0.5">→</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</Section>

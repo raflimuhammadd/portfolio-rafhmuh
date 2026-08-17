@@ -1,0 +1,97 @@
+---
+import Section from '../ui/Section.astro';
+import Card from '../ui/Card.astro';
+import Badge from '../ui/Badge.astro';
+
+const articles = [
+  {
+    title: 'Building Scalable APIs with Node.js and Redis',
+    url: 'https://medium.com/@raflimuhammadd/building-scalable-apis-with-node-js-and-redis',
+    excerpt: 'Learn how to implement caching, rate limiting, and optimization techniques for high-performance APIs.',
+    date: '2024-03-15',
+    readTime: '8 min read',
+  },
+  {
+    title: 'AWS Cloud Architecture for Startups',
+    url: 'https://medium.com/@raflimuhammadd/aws-cloud-architecture-for-startups',
+    excerpt: 'Cost-effective cloud infrastructure patterns for early-stage companies and side projects.',
+    date: '2024-02-28',
+    readTime: '10 min read',
+  },
+  {
+    title: 'Full-Stack Development Roadmap 2024',
+    url: 'https://medium.com/@raflimuhammadd/full-stack-development-roadmap-2024',
+    excerpt: 'Comprehensive guide to modern full-stack development tools, frameworks, and best practices.',
+    date: '2024-01-20',
+    readTime: '12 min read',
+  },
+];
+---
+
+<Section id="blog" bgColor="bg-neo-white" pattern="grid">
+  <div class="space-y-12">
+    <!-- Header -->
+    <div class="space-y-4">
+      <Badge variant="muted">Writing</Badge>
+      <h2 class="font-black text-5xl md:text-6xl lg:text-7xl uppercase leading-tight">
+        Latest Articles
+      </h2>
+      <p class="font-bold text-xl max-w-2xl">
+        Technical articles and tutorials published on Medium covering cloud, web development, and best practices
+      </p>
+    </div>
+
+    <!-- Articles Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {articles.map((article, index) => (
+        <Card class={`flex flex-col ${['-rotate-1', 'rotate-2', 'rotate-1'][index]}`}>
+          <div class="p-6 flex-1 flex flex-col gap-4">
+            <!-- Badge -->
+            <div class="flex items-center gap-2">
+              <Badge variant="secondary">Medium</Badge>
+              <span class="font-bold text-xs uppercase tracking-widest">EXTERNAL</span>
+            </div>
+
+            <!-- Title -->
+            <h3 class="font-black text-xl md:text-2xl uppercase leading-tight">
+              <a 
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-neo-accent hover:underline hover:underline-offset-4 transition-colors"
+              >
+                {article.title}
+              </a>
+            </h3>
+
+            <!-- Excerpt -->
+            <p class="font-bold text-base leading-relaxed flex-1">
+              {article.excerpt}
+            </p>
+
+            <!-- Metadata -->
+            <div class="flex items-center justify-between pt-4 border-t-4 border-neo-black">
+              <span class="font-bold text-xs uppercase">{article.date}</span>
+              <span class="font-bold text-xs uppercase text-neo-muted">{article.readTime}</span>
+            </div>
+          </div>
+        </Card>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center pt-8">
+      <a 
+        href="https://medium.com/@raflimuhammadd"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 border-4 border-neo-black bg-neo-secondary font-bold text-sm uppercase tracking-wide hover:bg-neo-secondary/90 hover:shadow-neo-md transition-all"
+      >
+        <span>View All Articles on Medium</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</Section>

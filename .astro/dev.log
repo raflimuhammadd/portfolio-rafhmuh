@@ -1,0 +1,23 @@
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Generated 0ms","label":"types","level":"info"}
+{"message":"connected.","label":"vite","level":"info"}
+{"message":"Syncing content","label":"content","level":"info"}
+{"message":"Synced content","label":"content","level":"info"}
+{"message":"Re-optimizing dependencies because vite config has changed","label":"vite","level":"info"}
+{"message":" astro  v7.2.2 ready in 957 ms\n┃ Local    http://localhost:4321/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":"watching for file changes...","label":null,"level":"info"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+[astro] Unable to load your Astro config
+
+{"message":"Cannot find module '@tailwindcss/vite' imported from '/Users/mac/projects/portfolio-2/astro.config.mjs'\n  Stack trace:\n    at /Users/mac/projects/portfolio-2/node_modules/vite/dist/node/chunks/node.js:34238:32\n    [...] See full stack trace in the browser, or rerun with --verbose.\n","label":"config","level":"error"}
+{"message":"Continuing with previous valid configuration\n","label":null,"level":"error"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+[astro] Unable to load your Astro config
+
+{"message":"Cannot find module '/Users/mac/projects/portfolio-2/node_modules/tailwindcss/dist/lib.mjs' imported from /Users/mac/projects/portfolio-2/node_modules/@astrojs/tailwind/dist/index.js\n  Stack trace:\n    at finalizeResolution (node:internal/modules/esm/resolve:272:11)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:724:38)\n    [...] See full stack trace in the browser, or rerun with --verbose.\n","label":"config","level":"error"}
+{"message":"Continuing with previous valid configuration\n","label":null,"level":"error"}
+{"message":"Configuration file updated. Restarting...","label":null,"level":"info"}
+[astro] Unable to load your Astro config
+
+{"message":"Cannot find module '/Users/mac/projects/portfolio-2/node_modules/tailwindcss/dist/lib.mjs' imported from /Users/mac/projects/portfolio-2/node_modules/@astrojs/tailwind/dist/index.js\n  Stack trace:\n    at finalizeResolution (node:internal/modules/esm/resolve:272:11)\n    at defaultResolve (node:internal/modules/esm/resolve:1006:11)\n    at #resolveAndMaybeBlockOnLoaderThread (node:internal/modules/esm/loader:724:38)\n    [...] See full stack trace in the browser, or rerun with --verbose.\n","label":"config","level":"error"}
+{"message":"Continuing with previous valid configuration\n","label":null,"level":"error"}

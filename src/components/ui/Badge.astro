@@ -1,0 +1,27 @@
+---
+interface Props {
+  variant?: 'accent' | 'secondary' | 'muted' | 'black';
+  rotate?: boolean;
+  class?: string;
+}
+
+const { 
+  variant = 'accent',
+  rotate = false,
+  class: className = ''
+} = Astro.props;
+
+const variants = {
+  accent: 'bg-neo-accent text-neo-black',
+  secondary: 'bg-neo-secondary text-neo-black',
+  muted: 'bg-neo-muted text-neo-black',
+  black: 'bg-neo-black text-neo-white',
+};
+
+const rotations = ['-rotate-2', 'rotate-1', 'rotate-2', '-rotate-1'];
+const randomRotation = rotate ? rotations[Math.floor(Math.random() * rotations.length)] : '';
+---
+
+<span class={`inline-flex items-center px-3 py-1 text-xs font-black uppercase tracking-widest border-2 border-neo-black shadow-neo-sm ${variants[variant]} ${randomRotation} ${className}`}>
+  <slot />
+</span>

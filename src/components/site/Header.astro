@@ -1,0 +1,83 @@
+---
+import { siteData } from '../../data/site';
+
+const navItems = [
+  { label: 'About', href: '#about' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Blog', href: '#blog' },
+  { label: 'Contact', href: '#contact' },
+];
+---
+
+<header class="sticky top-0 z-50 bg-neo-bg border-b-4 border-neo-black shadow-neo-sm">
+  <nav class="container mx-auto px-4 md:px-6 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 border-4 border-neo-black bg-neo-accent px-4 py-2 shadow-neo-sm hover:shadow-neo-md transition-all">
+        <span class="font-black text-lg uppercase tracking-tight">RM</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex items-center gap-2">
+        {navItems.map((item) => (
+          <li>
+            <a 
+              href={item.href}
+              class="px-4 py-2 font-bold text-sm uppercase tracking-wide hover:border-4 hover:border-neo-black hover:bg-neo-secondary hover:shadow-neo-sm transition-all"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        id="mobile-menu-toggle"
+        class="md:hidden border-4 border-neo-black bg-neo-white p-2 shadow-neo-sm hover:shadow-neo-md transition-all"
+        aria-label="Toggle menu"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div 
+      id="mobile-menu"
+      class="hidden md:hidden mt-4 border-4 border-neo-black bg-neo-white shadow-neo-lg"
+    >
+      <ul class="flex flex-col">
+        {navItems.map((item, index) => (
+          <li class={index > 0 ? 'border-t-4 border-neo-black' : ''}>
+            <a 
+              href={item.href}
+              class="block px-6 py-4 font-bold text-base uppercase tracking-wide hover:bg-neo-secondary transition-colors"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking nav links
+  const mobileLinks = menu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      menu?.classList.add('hidden');
+    });
+  });
+</script>

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Neo-brutalism utilities */
+@layer utilities {
+  .text-stroke {
+    -webkit-text-stroke: 2px #000;
+    color: transparent;
+  }
+  .text-stroke-fill {
+    -webkit-text-stroke: 2px #000;
+    -webkit-text-fill-color: #000;
+  }
+}
+
+/* Base styles */
+* {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-neo-bg text-neo-black font-bold;
+}
+
+/* Mechanical button effect */
+button:active,
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: none !important;
+  transition: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-spin-slow,
+  .animate-bounce {
+    animation: none;
+  }
+}

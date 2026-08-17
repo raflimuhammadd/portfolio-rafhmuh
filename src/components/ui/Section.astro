@@ -1,0 +1,27 @@
+---
+interface Props {
+  id?: string;
+  bgColor?: string;
+  pattern?: 'dots' | 'grid' | 'none';
+  class?: string;
+}
+
+const { 
+  id,
+  bgColor = 'bg-neo-bg',
+  pattern = 'none',
+  class: className = ''
+} = Astro.props;
+
+const patterns = {
+  dots: 'bg-[radial-gradient(#000_1.5px,transparent_1.5px)] bg-[size:20px_20px]',
+  grid: 'bg-[linear-gradient(to_right,rgba(0,0,0,0.1)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:40px_40px]',
+  none: '',
+};
+---
+
+<section id={id} class={`relative py-16 md:py-24 lg:py-32 ${bgColor} ${patterns[pattern]} ${className}`}>
+  <div class="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+    <slot />
+  </div>
+</section>

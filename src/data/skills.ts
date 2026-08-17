@@ -1,0 +1,35 @@
+export const skills = {
+  frontend: [
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Tailwind CSS',
+    'Vue.js',
+    'Astro',
+  ],
+  backend: [
+    'Node.js',
+    'Express.js',
+    'Python',
+    'Django',
+    'PostgreSQL',
+    'MongoDB',
+    'Redis',
+  ],
+  cloud: [
+    'AWS (EC2, S3, Lambda)',
+    'Google Cloud Platform',
+    'Docker',
+    'Kubernetes',
+    'Terraform',
+    'CI/CD',
+  ],
+  tools: [
+    'Git',
+    'Linux',
+    'Nginx',
+    'Postman',
+    'Jest',
+    'Playwright',
+  ],
+};

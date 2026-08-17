@@ -1,0 +1,50 @@
+---
+import Section from '../ui/Section.astro';
+import Badge from '../ui/Badge.astro';
+---
+
+<Section id="about" bgColor="bg-neo-white" pattern="grid">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <!-- Left: Content -->
+    <div class="space-y-6">
+      <div class="space-y-2">
+        <Badge variant="secondary">About Me</Badge>
+        <h2 class="font-black text-5xl md:text-6xl lg:text-7xl uppercase leading-tight">
+          Fresh <span class="text-neo-accent">Graduate</span>
+        </h2>
+      </div>
+
+      <div class="space-y-4 text-lg md:text-xl font-bold leading-relaxed">
+        <p>
+          I'm a full stack developer and cloud engineer based in Indonesia, recently graduated and excited to build scalable web applications and robust cloud infrastructure.
+        </p>
+        <p>
+          My passion lies in creating solutions that solve real problems—from crafting intuitive user interfaces to designing scalable backend systems and cloud architectures.
+        </p>
+        <p>
+          I specialize in modern web technologies and cloud platforms, with a strong foundation in software engineering principles and best practices.
+        </p>
+      </div>
+
+      <div class="space-y-3 pt-4">
+        <p class="font-black text-sm uppercase tracking-wide text-neo-muted">Key Expertise:</p>
+        <div class="flex flex-wrap gap-2">
+          {['Full-Stack Development', 'Cloud Architecture', 'DevOps', 'Scalability'].map((skill) => (
+            <Badge variant="accent">{skill}</Badge>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Decorative -->
+    <div class="hidden lg:flex items-center justify-center relative h-96">
+      <div class="absolute inset-0 border-8 border-neo-black bg-neo-secondary shadow-neo-xl rotate-6"></div>
+      <div class="absolute inset-8 border-8 border-neo-black bg-neo-muted shadow-neo-lg -rotate-3"></div>
+      <div class="absolute inset-16 border-8 border-neo-black bg-neo-accent shadow-neo-md rotate-2"></div>
+      <div class="relative z-10 text-center">
+        <p class="font-black text-5xl">📚</p>
+        <p class="font-black text-sm uppercase mt-4 tracking-wide">Always Learning</p>
+      </div>
+    </div>
+  </div>
+</Section>

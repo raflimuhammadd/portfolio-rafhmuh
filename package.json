@@ -1,0 +1,27 @@
+{
+  "name": "brutal-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Neo-brutalism portfolio for full stack developer & cloud engineer",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "typecheck": "tsc --noEmit",
+    "lint": "astro check"
+  },
+  "keywords": ["portfolio", "neo-brutalism", "astro", "tailwind", "full-stack", "cloud"],
+  "author": "Rafli Muhammad",
+  "license": "MIT",
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/ts-plugin": "^1.10.1",
+    "astro": "^7.2.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "tailwindcss": "3"
+  }
+}

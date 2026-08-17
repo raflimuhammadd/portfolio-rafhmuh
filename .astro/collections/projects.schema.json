@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "web",
+        "cloud",
+        "api",
+        "ml",
+        "personal",
+        "academic"
+      ]
+    },
+    "featured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "year": {
+      "type": "number"
+    },
+    "techStack": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "github": {
+          "type": "string"
+        },
+        "demo": {
+          "type": "string"
+        },
+        "caseStudy": {
+          "type": "string"
+        }
+      }
+    },
+    "image": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "slug",
+    "category",
+    "year",
+    "techStack",
+    "links",
+    "image"
+  ]
+}

@@ -1,0 +1,99 @@
+---
+import Section from '../ui/Section.astro';
+import Button from '../ui/Button.astro';
+import { socials } from '../../data/socials';
+---
+
+<Section id="contact" bgColor="bg-neo-accent">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <!-- Left: Text -->
+    <div class="space-y-6">
+      <h2 class="font-black text-5xl md:text-6xl lg:text-7xl uppercase leading-tight">
+        Get In Touch
+      </h2>
+      <p class="font-bold text-xl leading-relaxed">
+        I'm currently available for full-time opportunities, freelance work, and interesting collaborations. Let's build something amazing together.
+      </p>
+      <div class="space-y-3">
+        <p class="font-black text-sm uppercase tracking-wide">Connect with me:</p>
+        <div class="flex flex-wrap gap-3">
+          {socials.map((social) => (
+            <a 
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="border-4 border-neo-black bg-neo-white px-4 py-2 font-bold text-xs uppercase tracking-wide hover:bg-neo-secondary transition-all"
+            >
+              {social.name}
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Form -->
+    <div class="border-4 border-neo-black bg-neo-white shadow-neo-xl p-8">
+      <form id="contact-form" class="space-y-6">
+        <div>
+          <label for="name" class="block font-black text-sm uppercase mb-2">Name</label>
+          <input 
+            type="text" 
+            id="name" 
+            name="name"
+            class="w-full border-4 border-neo-black bg-neo-bg px-4 py-3 font-bold text-base placeholder:text-neo-black/40 focus-visible:bg-neo-secondary focus-visible:shadow-neo-sm focus-visible:outline-none"
+            placeholder="Your name"
+            required
+          />
+        </div>
+        <div>
+          <label for="email" class="block font-black text-sm uppercase mb-2">Email</label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            class="w-full border-4 border-neo-black bg-neo-bg px-4 py-3 font-bold text-base placeholder:text-neo-black/40 focus-visible:bg-neo-secondary focus-visible:shadow-neo-sm focus-visible:outline-none"
+            placeholder="hello@example.com"
+            required
+          />
+        </div>
+        <div>
+          <label for="message" class="block font-black text-sm uppercase mb-2">Message</label>
+          <textarea 
+            id="message" 
+            name="message"
+            rows="4"
+            class="w-full border-4 border-neo-black bg-neo-bg px-4 py-3 font-bold text-base placeholder:text-neo-black/40 focus-visible:bg-neo-secondary focus-visible:shadow-neo-sm focus-visible:outline-none resize-none"
+            placeholder="What would you like to discuss?"
+            required
+          ></textarea>
+        </div>
+        <Button type="submit" variant="primary" size="lg" class="w-full">
+          Send Message
+        </Button>
+      </form>
+    </div>
+  </div>
+</Section>
+
+<script>
+  document.getElementById('contact-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Simple form handling - in production, connect to Formspree/Netlify
+    const form = e.target;
+    const formData = new FormData(form);
+    
+    // Show success message
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Message Sent! ✅';
+    submitBtn.disabled = true;
+    
+    // Reset after 3 seconds
+    setTimeout(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      form.reset();
+    }, 3000);
+  });
+</script>
