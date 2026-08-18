@@ -16,7 +16,7 @@ export const socials = [
   },
   {
     name: 'Email',
-    url: 'mailto:hello@raflimuhammadd.dev',
+    url: 'mailto:prattmuhh@gmail.com',
     icon: 'mail',
   },
 ];

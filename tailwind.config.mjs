@@ -14,12 +14,37 @@ export default {
       fontFamily: {
         space: ['Space Grotesk', 'sans-serif'],
       },
+      fontWeight: {
+        'semibold': 600,
+        'bold': 700,
+        'extrabold': 800,
+        'black': 900,
+      },
       borderWidth: {
         '4': '4px',
+        '6': '6px',
         '8': '8px',
+      },
+      spacing: {
+        '10': '2.5rem',
       },
       animation: {
         'spin-slow': 'spin 10s linear infinite',
+        'earthquake': 'earthquake 3s ease-in-out infinite',
+      },
+      keyframes: {
+        earthquake: {
+          '0%, 100%': { transform: 'rotate(1deg) translate(0, 0)' },
+          '10%': { transform: 'rotate(0.8deg) translate(-1px, -2px)' },
+          '20%': { transform: 'rotate(1.2deg) translate(-3px, 0px)' },
+          '30%': { transform: 'rotate(0.9deg) translate(3px, 2px)' },
+          '40%': { transform: 'rotate(1.1deg) translate(1px, -1px)' },
+          '50%': { transform: 'rotate(1deg) translate(-1px, 2px)' },
+          '60%': { transform: 'rotate(1.1deg) translate(-3px, 1px)' },
+          '70%': { transform: 'rotate(0.9deg) translate(2px, 1px)' },
+          '80%': { transform: 'rotate(1.2deg) translate(-1px, -1px)' },
+          '90%': { transform: 'rotate(0.8deg) translate(2px, 2px)' },
+        },
       },
       boxShadow: {
         'neo-sm': '4px 4px 0px 0px #000',

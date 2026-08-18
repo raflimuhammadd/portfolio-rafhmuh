@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -14,6 +14,32 @@
     -webkit-text-stroke: 2px #000;
     -webkit-text-fill-color: #000;
   }
+  .text-stroke-white {
+    -webkit-text-stroke: 3px #000;
+    text-stroke: 3px #000;
+    paint-order: stroke fill;
+  }
+  
+  .text-title {
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  
+  .text-heading {
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-body-bold {
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+  
+  .text-body {
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1.7;
+  }
 }
 
 /* Base styles */
@@ -26,7 +52,30 @@ html {
 }
 
 body {
-  @apply bg-neo-bg text-neo-black font-bold;
+  @apply bg-neo-bg text-neo-black;
+  font-weight: 700;
+}
+
+h1 {
+  font-weight: 900;
+}
+
+h2 {
+  font-weight: 900;
+}
+
+h3, h4 {
+  font-weight: 900;
+}
+
+p {
+  font-weight: 700;
+  line-height: 1.7;
+}
+
+.text-sm, .text-xs {
+  font-weight: 600;
+  letter-spacing: 0.025em;
 }
 
 /* Mechanical button effect */
@@ -37,13 +86,28 @@ button:active,
   transition: none;
 }
 
+
+
+.text-stroke-white {
+  -webkit-text-stroke: 3px #000;
+  text-stroke: 3px #000;
+  paint-order: stroke fill;
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .animate-spin-slow,
-  .animate-bounce {
-    animation: none;
+  .animate-bounce,
+  .animate-earthquake,
+  .earthquake-card {
+    animation: none !important;
+  }
+  
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

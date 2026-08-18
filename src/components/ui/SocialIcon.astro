@@ -1,0 +1,21 @@
+---
+import { Github, Linkedin, FileText, Mail } from 'lucide-astro';
+
+interface Props {
+  icon: string;
+  class?: string;
+}
+
+const { icon, class: className = 'w-6 h-6' } = Astro.props;
+
+const iconMap = {
+  github: Github,
+  linkedin: Linkedin,
+  medium: FileText,
+  mail: Mail,
+};
+
+const IconComponent = iconMap[icon as keyof typeof iconMap];
+---
+
+{IconComponent && <IconComponent class={className} />}

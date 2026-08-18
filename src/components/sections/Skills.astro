@@ -4,7 +4,7 @@ import Badge from '../ui/Badge.astro';
 import { skills } from '../../data/skills';
 ---
 
-<Section id="skills" bgColor="bg-neo-secondary">
+<Section id="skills" bgColor="bg-neo-secondary" contentWidth="wide">
   <div class="space-y-12">
     <!-- Header -->
     <div class="space-y-4">
@@ -21,7 +21,7 @@ import { skills } from '../../data/skills';
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {Object.entries(skills).map(([category, items]) => (
         <div class="border-4 border-neo-black bg-neo-white p-6 shadow-neo-lg hover:shadow-neo-xl hover:-translate-y-2 transition-all">
-          <h3 class="font-black text-lg uppercase mb-4 border-b-4 border-neo-black pb-2 capitalize">
+          <h3 class="font-black text-lg mb-4 border-b-4 border-neo-black pb-2 capitalize">
             {category}
           </h3>
           <ul class="space-y-2">

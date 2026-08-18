@@ -7,7 +7,7 @@ export const siteData = {
   author: 'Rafli Muhammad',
   
   contact: {
-    email: 'hello@raflimuhammadd.dev',
+    email: 'prattmuhh@gmail.com',
     location: 'Indonesia',
   },
 };
