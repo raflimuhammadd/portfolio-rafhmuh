@@ -69,9 +69,14 @@ import { socials } from '../../data/socials';
             required
           ></textarea>
         </div>
-        <Button type="submit" variant="primary" size="lg" class="w-full">
+        <!-- Submit Button -->
+        <button 
+        type="submit"
+        class="w-full bg-neo-black shadow-neo-md text-neo-white border-4 border-neo-white px-8 py-4 font-black text-lg uppercase tracking-wide hover:bg-neo-secondary hover:text-neo-black hover:shadow-neo-lg transition-all active:translate-x-1 active:translate-y-1"
+        >
           Send Message
-        </Button>
+        </button>
+
       </form>
     </div>
   </div>
@@ -81,17 +86,14 @@ import { socials } from '../../data/socials';
   document.getElementById('contact-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // Simple form handling - in production, connect to Formspree/Netlify
-    const form = e.target;
+    const form = e.target as HTMLFormElement;
     const formData = new FormData(form);
     
-    // Show success message
-    const submitBtn = form.querySelector('button[type="submit"]');
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Message Sent! ✅';
     submitBtn.disabled = true;
     
-    // Reset after 3 seconds
     setTimeout(() => {
       submitBtn.textContent = originalText;
       submitBtn.disabled = false;

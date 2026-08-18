@@ -16,7 +16,6 @@
   }
   .text-stroke-white {
     -webkit-text-stroke: 3px #000;
-    text-stroke: 3px #000;
     paint-order: stroke fill;
   }
   
@@ -84,14 +83,6 @@ button:active,
   transform: translate(2px, 2px);
   box-shadow: none !important;
   transition: none;
-}
-
-
-
-.text-stroke-white {
-  -webkit-text-stroke: 3px #000;
-  text-stroke: 3px #000;
-  paint-order: stroke fill;
 }
 
 /* Reduced motion support */
