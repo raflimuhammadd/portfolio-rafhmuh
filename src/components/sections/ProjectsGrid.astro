@@ -6,7 +6,7 @@ import Button from '../ui/Button.astro';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
-const featuredProjects = allProjects.filter(p => p.data.featured).slice(0, 3);
+const featuredProjects = allProjects.filter((p: typeof allProjects[0]) => p.data.featured).slice(0, 3);
 ---
 
 <Section id="projects" bgColor="bg-neo-bg" pattern="dots" contentWidth="wide">
@@ -24,7 +24,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured).slice(0, 3);
 
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-      {featuredProjects.map((project, index) => (
+      {featuredProjects.map((project: (typeof featuredProjects)[number], index: number) => (
         <Card class={`flex flex-col h-full ${['rotate-2', '-rotate-1', 'rotate-1'][index]}`}>
           <div class="flex-1 flex flex-col gap-4 p-10">
             <Badge variant={
@@ -44,7 +44,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured).slice(0, 3);
             </p>
 
             <div class="flex flex-wrap gap-2 pt-4 border-t-4 border-neo-black">
-              {project.data.techStack.slice(0, 5).map((tech) => (
+              {project.data.techStack.slice(0, 5).map((tech: string) => (
                 <span class="bg-neo-bg border-2 border-neo-black px-3 py-1 text-xs font-bold uppercase">
                   {tech}
                 </span>

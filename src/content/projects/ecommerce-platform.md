@@ -6,6 +6,8 @@ year: 2024
 featured: true
 description: "Full-stack e-commerce platform with real-time inventory management, payment processing, and admin dashboard."
 image: "/images/projects/ecommerce-hero.jpg"
+images:
+  - "/images/projects/ecommerce-hero.jpg"
 techStack: ["React", "TypeScript", "Node.js", "MongoDB", "Stripe", "Docker", "Tailwind CSS"]
 links:
   github: "https://github.com/raflimuhammadd/ecommerce-platform"

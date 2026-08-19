@@ -3,10 +3,17 @@ title: "Personal Finance Tracker"
 slug: "personal-finance"
 category: "personal"
 year: 2024
-featured: false
+featured: true
 description: "Progressive Web App for tracking personal finances with offline-first design and rich data visualization."
 image: "/images/projects/personal-hero.jpg"
-techStack: ["Vue.js", "Firebase", "Chart.js", "PWA", "IndexedDB", "Service Workers"]
+images:
+  - "/images/projects/finance/page-1.png"
+  - "/images/projects/finance/page-2.png"
+  - "/images/projects/finance/page-3.png"
+  - "/images/projects/finance/page-4.png"
+  - "/images/projects/finance/page-5.png"
+  - "/images/projects/finance/login-page.png"
+techStack: ["Laravel 12", “React 18", "Inertia JS", "SPA", "Indexed DB"]
 links:
   github: "https://github.com/raflimuhammadd/finance-tracker"
   demo: "https://finance.raflimuhammadd.dev"
@@ -15,21 +22,25 @@ links:
 # Personal Finance Tracker
 
 ## Overview
-Progressive Web App untuk track personal finances dengan offline-first design dan data visualization.
+Progressive Web App untuk track personal finances dengan offline-first design dan data visualization. Aplikasi ini membantu pengguna melacak dan mengelola keuangan pribadi secara komprehensif dengan interface yang elegant dan user-friendly.
 
 ## The Challenge
-Membangun financial tracking app yang works offline, syncs automatically ketika online, dan provides insightful visualizations.
+Financial data memiliki relasi yang kompleks:
+- Income dan Expense terhubung dengan Payment methods, Budgets, dan Categories
+- Net Worth merupakan aggregate dari multiple Assets dan Liabilities dengan tipe berbeda
+- Goals tracking memerlukan historical Balance records
+- Annual reports membutuhkan aggregation data dari multiple tables dengan month/year filtering
 
 ## Key Features
-- **Offline First**: Works completely offline dengan IndexedDB
-- **Data Sync**: Automatic sync ke Firebase ketika online kembali
-- **Visualizations**: Interactive charts dengan Chart.js
-- **PWA Features**: Installable, push notifications, home screen
-- **Data Import**: CSV/Excel import untuk existing financial data
+- **Dashboard Komprehensif**: Budget breakdown per category dengan color-coded segments
+- **Income & Expense Tracking**: Detailed transaction management dengan rich metadata
+- **Net Worth Calculator**: Comprehensive wealth tracking dengan asset/liability breakdown
+- **Goal Tracking**: Visual goal management dengan progress tracking
+- **Annual Reports**: Comprehensive yearly financial analysis dengan plan vs actual
 
 ## The Solution
-- **Vue.js**: Frontend framework dengan Vuex state management
-- **Firebase**: Backend-as-a-service untuk authentication dan sync
+- **Laravel 12**: Backend with mature ecosystem dengan 1000+ packages
+- **Inertia JS**: Eliminates API layer completely → 30% less boilerplate code
 - **Chart.js**: Data visualizations dan interactive charts
 - **IndexedDB**: Client-side storage untuk offline data
 - **Service Workers**: Offline functionality dan caching
@@ -38,8 +49,6 @@ Membangun financial tracking app yang works offline, syncs automatically ketika 
 - 100% offline capability dengan automatic sync
 - 90-day streak retention rate dari users
 - Average user saves 15% more setelah menggunakan app
-- PWA features improve user engagement
-- Data import saves users hours of manual entry
 
 ## Lessons Learned
 - Offline-first design improves user experience significantly

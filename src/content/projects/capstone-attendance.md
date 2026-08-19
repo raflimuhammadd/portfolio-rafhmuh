@@ -6,6 +6,8 @@ year: 2024
 featured: false
 description: "University capstone face recognition attendance system with mobile app, admin dashboard, and live tracking."
 image: "/images/projects/capstone-hero.jpg"
+images:
+  - "/images/projects/capstone-hero.jpg"
 techStack: ["React Native", "Express.js", "PostgreSQL", "Face Recognition", "WebRTC", "JWT"]
 links:
   github: "https://github.com/raflimuhammadd/smart-attendance"

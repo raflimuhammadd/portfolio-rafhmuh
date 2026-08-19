@@ -6,6 +6,8 @@ year: 2024
 featured: true
 description: "High-performance REST API with real-time WebSocket integration, caching, rate limiting, and interactive documentation."
 image: "/images/projects/api-hero.jpg"
+images:
+  - "/images/projects/api-hero.jpg"
 techStack: ["Node.js", "PostgreSQL", "Redis", "JWT", "Socket.io", "Docker", "Swagger"]
 links:
   github: "https://github.com/raflimuhammadd/realtime-api"

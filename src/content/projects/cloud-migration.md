@@ -6,6 +6,8 @@ year: 2024
 featured: true
 description: "Architected and migrated legacy monolithic application to AWS cloud with auto-scaling, monitoring, and disaster recovery."
 image: "/images/projects/cloud-hero.jpg"
+images:
+  - "/images/projects/cloud-hero.jpg"
 techStack: ["AWS", "Terraform", "Kubernetes", "Docker", "CI/CD", "Prometheus", "Grafana"]
 links:
   github: "https://github.com/raflimuhammadd/cloud-migration"

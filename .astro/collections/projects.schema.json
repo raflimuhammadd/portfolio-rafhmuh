@@ -32,6 +32,13 @@
     "image": {
       "type": "string"
     },
+    "images": {
+      "default": [],
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "techStack": {
       "type": "array",
       "items": {

@@ -1,0 +1,96 @@
+---
+import Button from './Button.astro';
+import { createSignal, onCleanup, onMount } from 'solid-js';
+
+interface Props {
+  images: string[];
+  open: boolean;
+  onClose: () => void;
+  initialIndex?: number;
+}
+
+const { images, open, onClose, initialIndex = 0 } = Astro.props;
+
+const [currentIndex, setCurrentIndex] = createSignal(initialIndex);
+const [isAnimating, setIsAnimating] = createSignal(false);
+
+const nextImage = () => {
+  if (isAnimating()) return;
+  setIsAnimating(true);
+  setCurrentIndex((prev) => (prev + 1) % images.length);
+  setTimeout(() => setIsAnimating(false), 300);
+};
+
+const prevImage = () => {
+  if (isAnimating()) return;
+  setIsAnimating(true);
+  setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  setTimeout(() => setIsAnimating(false), 300);
+};
+
+const handleKeyDown = (e: KeyboardEvent) => {
+  if (!open) return;
+  if (e.key === 'ArrowRight') nextImage();
+  if (e.key === 'ArrowLeft') prevImage();
+  if (e.key === 'Escape') onClose();
+};
+
+onMount(() => {
+  window.addEventListener('keydown', handleKeyDown);
+  document.body.style.overflow = 'hidden';
+});
+
+onCleanup(() => {
+  window.removeEventListener('keydown', handleKeyDown);
+  document.body.style.overflow = '';
+});
+
+const handleBackdropClick = (e: MouseEvent) => {
+  if (e.target === e.currentTarget) onClose();
+};
+---
+
+<div
+  class={`fixed inset-0 z-50 flex items-center justify-center bg-neo-black/90 backdrop-blur-sm transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+  onClick={handleBackdropClick}
+>
+  <div class="relative flex h-full w-full items-center justify-center p-4 md:p-8">
+    <button
+      onClick={onClose}
+      class="absolute right-4 top-4 z-50 border-4 border-neo-black bg-neo-white px-4 py-2 font-black uppercase shadow-neo-md hover:bg-neo-accent hover:text-neo-white focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
+      aria-label="Close modal"
+    >
+      ✕
+    </button>
+
+    <button
+      onClick={prevImage}
+      class="absolute left-4 z-40 hidden md:block border-4 border-neo-black bg-neo-white px-6 py-4 font-black uppercase shadow-neo-lg hover:bg-neo-accent hover:text-neo-white focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
+      aria-label="Previous image"
+    >
+      ←
+    </button>
+
+    <div class="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg border-8 border-neo-black bg-neo-white shadow-neo-2xl transition-all duration-300">
+      <img
+        src={images[currentIndex()]}
+        alt={`Project image ${currentIndex() + 1}`}
+        class={`h-auto max-h-[90vh] w-auto max-w-[90vw] object-contain transition-opacity duration-300 ${isAnimating() ? 'opacity-0' : 'opacity-100'}`}
+      />
+    </div>
+
+    <button
+      onClick={nextImage}
+      class="absolute right-4 z-40 hidden md:block border-4 border-neo-black bg-neo-white px-6 py-4 font-black uppercase shadow-neo-lg hover:bg-neo-accent hover:text-neo-white focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
+      aria-label="Next image"
+    >
+      →
+    </button>
+  </div>
+
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full border-4 border-neo-black bg-neo-white/95 px-6 py-3 shadow-neo-md">
+    <span class="font-black uppercase tracking-widest text-neo-black">
+      {currentIndex() + 1} / {images.length}
+    </span>
+  </div>
+</div>

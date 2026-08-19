@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string;
+  defaultOpen?: boolean;
+  children: any;
+}
+
+const { title, defaultOpen = false, children } = Astro.props;
+---
+
+<div class="accordion-item mb-4 overflow-hidden border-4 border-neo-black bg-neo-white shadow-neo-md">
+  <button
+    class="accordion-button flex w-full items-center justify-between bg-neo-white px-6 py-4 font-black uppercase transition-colors hover:bg-neo-secondary focus:outline-none focus:ring-4 focus:ring-neo-black/20"
+    data-open={defaultOpen}
+  >
+    <span class="text-lg uppercase tracking-wide">{title}</span>
+    <span class="accordion-icon flex h-8 w-8 items-center justify-center rounded border-4 border-neo-black bg-neo-black text-neo-white transition-transform duration-300">
+      {defaultOpen ? '−' : '+'}
+    </span>
+  </button>
+  <div class={`accordion-content overflow-hidden transition-all duration-300 ease-in-out ${defaultOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+    <div class="border-t-4 border-neo-black bg-neo-bg p-6">
+      <slot />
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.accordion-button').forEach(button => {
+    button.addEventListener('click', function() {
+      const item = this.closest('.accordion-item');
+      const content = item.querySelector('.accordion-content');
+      const icon = item.querySelector('.accordion-icon');
+      const isOpen = this.dataset.open === 'true';
+      
+      this.dataset.open = !isOpen;
+      
+      if (!isOpen) {
+        content.classList.remove('max-h-0', 'opacity-0');
+        content.classList.add('max-h-[2000px]', 'opacity-100');
+        icon.textContent = '−';
+      } else {
+        content.classList.add('max-h-0', 'opacity-0');
+        content.classList.remove('max-h-[2000px]', 'opacity-100');
+        icon.textContent = '+';
+      }
+    });
+  });
+</script>

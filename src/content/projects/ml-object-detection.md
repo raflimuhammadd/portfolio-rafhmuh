@@ -6,6 +6,8 @@ year: 2024
 featured: false
 description: "Real-time object detection system using deep learning for detecting and tracking objects in video streams."
 image: "/images/projects/ml-hero.jpg"
+images:
+  - "/images/projects/ml-hero.jpg"
 techStack: ["Python", "TensorFlow", "OpenCV", "Flask", "Docker", "PyTorch"]
 links:
   github: "https://github.com/raflimuhammadd/ml-object-detection"
