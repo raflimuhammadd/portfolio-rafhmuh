@@ -68,15 +68,15 @@ const renderTextWithBulletsSection = (parsed: ParsedSection | null): string => {
   
   // Render intro if exists
   if (parsed.intro) {
-    html += `<p class="font-bold leading-relaxed text-lg mb-4">${parsed.intro}</p>`;
+    html += `<p class="font-black text-xl text-neo-accent leading-relaxed mb-4">${parsed.intro}</p>`;
   }
   
   // Render bullets if exist
   if (parsed.hasBullets) {
     const bulletHtml = parsed.bullets
-      .map(bullet => `<li class="mb-2 leading-relaxed">${bullet}</li>`)
+      .map(bullet => `<li class="mb-2 leading-relaxed pl-2">${bullet}</li>`)
       .join('');
-    html += `<ul class="list-outside list-disc font-bold ml-6">${bulletHtml}</ul>`;
+    html += `<ul class="list-outside list-disc font-bold space-y-1">${bulletHtml}</ul>`;
   }
   
   return html;
@@ -177,9 +177,9 @@ const renderSection = (section: RenderedSection): string => {
                       <Fragment set:html={renderTextSection(section.parsed)} />
                     </div>
                   )}
-                  
+
                   {section.config.type === 'text-with-bullets' && (
-                    <Fragment set:html={renderBulletSection(section.parsed)} />
+                    <Fragment set:html={renderTextWithBulletsSection(section.parsed)} />
                   )}
 
                   {section.config.type === 'bullets' && (
