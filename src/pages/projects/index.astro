@@ -8,7 +8,9 @@ import Button from '../../components/ui/Button.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
+const sortedProjects = projects.sort(
+  (a: (typeof projects)[number], b: (typeof projects)[number]) => b.data.year - a.data.year
+);
 ---
 
 <BaseLayout title="All Projects | Rafli Muhammad" description="Browse all my projects across web development, cloud engineering, API development, machine learning, personal projects, and academic work.">
@@ -35,13 +37,13 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
         </div>
         <div class="border-4 border-neo-black bg-neo-secondary p-4 shadow-neo-md">
           <p class="font-black text-3xl">
-            {sortedProjects.filter(p => p.data.featured).length}
+            {sortedProjects.filter((p: (typeof projects)[number]) => p.data.featured).length}
           </p>
           <p class="font-bold text-xs uppercase tracking-widest">Featured</p>
         </div>
         <div class="border-4 border-neo-black bg-neo-muted p-4 shadow-neo-md">
           <p class="font-black text-3xl">
-            {new Set(sortedProjects.map(p => p.data.category)).size}
+            {new Set(sortedProjects.map((p: (typeof sortedProjects)[number]) => p.data.category)).size}
           </p>
           <p class="font-bold text-xs uppercase tracking-widest">Categories</p>
         </div>
@@ -73,7 +75,7 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
 
       <!-- Projects Grid -->
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3" id="projects-grid">
-        {sortedProjects.map((project, index) => (
+        {sortedProjects.map((project: (typeof projects)[number], index: number) => (
           <Card class={`h-full ${['rotate-1', '-rotate-1', 'rotate-2'][index % 3]}`}>
             <div class="flex h-full flex-col gap-4 p-6">
               <!-- Badge -->
@@ -103,7 +105,7 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
 
               <!-- Tech Preview -->
               <div class="flex flex-wrap gap-1">
-                {project.data.techStack.slice(0, 3).map((tech) => (
+                {project.data.techStack.slice(0, 3).map((tech: string) => (
                   <span class="border border-neo-black bg-neo-bg px-2 py-1 text-xs font-bold uppercase">
                     {tech}
                   </span>
@@ -148,8 +150,9 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
   <script>
     // Simple category filtering
     document.addEventListener('DOMContentLoaded', () => {
-      const filterButtons = document.querySelectorAll('[data-category]');
+      const filterButtons = document.querySelectorAll<HTMLButtonElement>('[data-category]');
       const projectsGrid = document.getElementById('projects-grid');
+      if (!projectsGrid) return;
       const projectCards = Array.from(projectsGrid.children);
       
       filterButtons.forEach(button => {
@@ -169,9 +172,9 @@ const sortedProjects = projects.sort((a, b) => b.data.year - a.data.year);
             const projectCategory = card.querySelector('span')?.textContent?.toLowerCase();
             
             if (category === 'all' || projectCategory === category) {
-              card.style.display = 'block';
+              (card as HTMLElement).style.display = 'block';
             } else {
-              card.style.display = 'none';
+              (card as HTMLElement).style.display = 'none';
             }
           });
         });

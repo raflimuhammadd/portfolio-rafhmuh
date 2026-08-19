@@ -7,6 +7,8 @@ import Button from '../../components/ui/Button.astro';
 import SectionAccordion from '../../components/ui/SectionAccordion.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { SECTION_CONFIG, parseSection, parseOutcomes } from '../../utils/parseMarkdownSections';
+import type { ParsedSection, SectionConfig, OutcomeItem } from '../../utils/parseMarkdownSections';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -16,29 +18,85 @@ export async function getStaticPaths() {
   }));
 }
 
-const { project } = Astro.props;
+const { project } = Astro.props as { project: CollectionEntry<'projects'> };
 const { Content } = await render(project);
 
 const images = project.data.images.length > 0 ? project.data.images : [project.data.image];
 
-const parseOutcomes = () => {
-  const outcomesSection = project.body.match(/## Outcomes & Impact([\s\S]*?)(?=##|$)/);
-  if (!outcomesSection) return [];
+const parsedSections = SECTION_CONFIG.map(config => {
+  const parsed = parseSection(config.heading, project.body);
+  return {
+    config,
+    parsed
+  };
+});
+
+interface RenderedSection {
+  config: SectionConfig;
+  parsed: ParsedSection | null;
+  html: string;
+}
+
+const renderTextSection = (parsed: ParsedSection | null): string => {
+  if (!parsed) return '<p class="text-neo-muted">Section not available</p>';
+  if (!parsed.content) return '<p class="text-neo-muted">No content</p>';
   
-  const items = outcomesSection[1].trim().split('\n').filter(line => line.trim().startsWith('-'));
-  return items.map(item => {
-    const text = item.replace(/^-\s*/, '').trim();
-    const match = text.match(/(\d+(?:\.\d+)?%|\d+(?:,\d{3})+\+?|\d+(?:\.\d+)?\s*(ms|s|FPS|GB|TB|x|menit|menit|minutes?))/i);
-    if (match) {
-      const value = match[0].trim();
-      const label = text.replace(value, '').trim();
-      return { value, label, isStat: true };
-    }
-    return { text, isStat: false };
-  });
+  return `<p class="font-bold leading-relaxed text-lg">${parsed.content}</p>`;
 };
 
-const outcomes = parseOutcomes();
+const renderBulletSection = (parsed: ParsedSection | null): string => {
+  if (!parsed || !parsed.hasBullets) {
+    return '<p class="text-neo-muted">No items</p>';
+  }
+  
+  const bulletHtml = parsed.bullets
+    .map(bullet => `<li class="mb-2 leading-relaxed">${bullet}</li>`)
+    .join('');
+  
+  return `<ul class="list-inside list-disc font-bold">${bulletHtml}</ul>`;
+};
+
+const renderOutcomesSection = (parsed: ParsedSection | null): OutcomeItem[] => {
+  if (!parsed || !parsed.hasBullets) return [];
+  return parseOutcomes(parsed.bullets);
+};
+
+const renderTextWithBulletsSection = (parsed: ParsedSection | null): string => {
+  if (!parsed) return '<p class="text-neo-muted">Section not available</p>';
+  
+  let html = '';
+  
+  // Render intro if exists
+  if (parsed.intro) {
+    html += `<p class="font-bold leading-relaxed text-lg mb-4">${parsed.intro}</p>`;
+  }
+  
+  // Render bullets if exist
+  if (parsed.hasBullets) {
+    const bulletHtml = parsed.bullets
+      .map(bullet => `<li class="mb-2 leading-relaxed">${bullet}</li>`)
+      .join('');
+    html += `<ul class="list-outside list-disc font-bold ml-6">${bulletHtml}</ul>`;
+  }
+  
+  return html;
+};
+
+const renderSection = (section: RenderedSection): string => {
+  switch(section.config.type) {
+    case 'text':
+      return renderTextSection(section.parsed);
+    case 'text-with-bullets':
+      return renderTextWithBulletsSection(section.parsed);
+    case 'bullets':
+      return renderBulletSection(section.parsed);
+    case 'outcomes':
+      return '';
+    default:
+      return '';
+  }
+};
+
 ---
 
 <BaseLayout title={`${project.data.title} | Rafli Muhammad`} description={project.data.description}>
@@ -68,10 +126,9 @@ const outcomes = parseOutcomes();
 
           <!-- Image Gallery - Thumbnails Grid -->
           <div class="mb-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-2">
-            {images.map((img, idx) => (
+            {images.map((img: string, idx: number) => (
               <button
-                key={idx}
-                onClick={`openModal(${idx})`}
+                onclick={`openModal(${idx})`}
                 class="group relative aspect-video w-full overflow-hidden rounded-lg border-4 border-neo-black bg-neo-white shadow-neo-md transition-all duration-200 hover:-translate-y-1 hover:shadow-neo-xl focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
               >
                 <img
@@ -89,62 +146,48 @@ const outcomes = parseOutcomes();
           </div>
 
           <!-- Accordion Sections -->
-          <div class="space-y-4">
-            <SectionAccordion title="Overview" defaultOpen={true}>
-              <div class="prose max-w-none space-y-4">
-                <p class="font-bold leading-relaxed text-lg">{project.data.description}</p>
-              </div>
-            </SectionAccordion>
-
-            <SectionAccordion title="Key Features">
-              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <div class="border-4 border-neo-black bg-neo-white p-4 shadow-neo-md">
-                  <p class="font-bold leading-relaxed">Feature placeholder - Update with actual content</p>
-                </div>
-              </div>
-            </SectionAccordion>
-
-            <SectionAccordion title="The Challenge & Solution">
-              <div class="space-y-6">
-                <div class="border-4 border-neo-black bg-neo-white p-6 shadow-neo-md">
-                  <h3 class="mb-4 font-black text-2xl uppercase">The Challenge</h3>
-                  <p class="font-bold leading-relaxed">Challenge placeholder</p>
-                </div>
-                <div class="border-4 border-neo-black bg-neo-secondary p-6 shadow-neo-md">
-                  <h3 class="mb-4 font-black text-2xl uppercase">The Solution</h3>
-                  <p class="font-bold leading-relaxed">Solution placeholder</p>
-                </div>
-              </div>
-            </SectionAccordion>
-
-            <SectionAccordion title="Outcomes & Impact">
-              <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                {outcomes.map((item, idx) => (
-                  item.isStat ? (
-                    <div
-                      key={idx}
-                      class="flex flex-col gap-2 border-4 border-neo-black bg-neo-white p-6 shadow-neo-md"
-                    >
-                      <span class="font-black text-5xl text-neo-accent">{item.value}</span>
-                      <span class="font-bold uppercase text-sm leading-snug">{item.label}</span>
+           <div class="space-y-4">
+            {parsedSections.map(section => {
+              if (section.config.type === 'outcomes') {
+                const outcomes = renderOutcomesSection(section.parsed);
+                return (
+                  <SectionAccordion title={section.config.title} defaultOpen={section.config.defaultOpen}>
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      {outcomes.map((item, idx) => (
+                        item.isStat ? (
+                          <div class="flex flex-col gap-2 border-4 border-neo-black bg-neo-white p-6 shadow-neo-md">
+                            <span class="font-black text-5xl text-neo-accent">{item.value}</span>
+                            <span class="font-bold uppercase text-sm leading-snug">{item.label}</span>
+                          </div>
+                        ) : (
+                          <div class="border-4 border-neo-black bg-neo-white p-6 shadow-neo-md">
+                            <p class="font-bold leading-relaxed">{item.text}</p>
+                          </div>
+                        )
+                      ))}
                     </div>
-                  ) : (
-                    <div
-                      key={idx}
-                      class="border-4 border-neo-black bg-neo-white p-6 shadow-neo-md"
-                    >
-                      <p class="font-bold leading-relaxed">{item.text}</p>
+                  </SectionAccordion>
+                );
+              }
+              
+              return (
+                <SectionAccordion title={section.config.title} defaultOpen={section.config.defaultOpen}>
+                  {section.config.type === 'text' && (
+                    <div class="prose max-w-none space-y-4">
+                      <Fragment set:html={renderTextSection(section.parsed)} />
                     </div>
-                  )
-                ))}
-              </div>
-            </SectionAccordion>
+                  )}
+                  
+                  {section.config.type === 'text-with-bullets' && (
+                    <Fragment set:html={renderBulletSection(section.parsed)} />
+                  )}
 
-            <SectionAccordion title="Lessons Learned">
-              <div class="prose max-w-none">
-                <p class="font-bold leading-relaxed">Lessons placeholder</p>
-              </div>
-            </SectionAccordion>
+                  {section.config.type === 'bullets' && (
+                    <Fragment set:html={renderBulletSection(section.parsed)} />
+                  )}
+                </SectionAccordion>
+              );
+            })}
           </div>
 
           <!-- Navigation Buttons -->
@@ -202,9 +245,8 @@ const outcomes = parseOutcomes();
             <div class="border-4 border-neo-black bg-neo-white p-6 shadow-neo-lg">
               <h3 class="mb-4 font-black text-lg uppercase">Tech Stack</h3>
               <div class="flex flex-wrap gap-2">
-                {project.data.techStack.map((tech) => (
+                {project.data.techStack.map((tech: string) => (
                   <span
-                    key={tech}
                     class="border-2 border-neo-black bg-neo-bg px-3 py-1 text-xs font-black uppercase"
                   >
                     {tech}
@@ -242,7 +284,7 @@ const outcomes = parseOutcomes();
     </div>
 
     <!-- Image Gallery Modal -->
-    <div id="imageModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-neo-black/90 backdrop-blur-sm">
+    <div id="imageModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-neo-black/90 backdrop-blur-sm">
       <div class="relative flex h-full w-full items-center justify-center p-4 md:p-8">
         <button
           id="modalClose"
