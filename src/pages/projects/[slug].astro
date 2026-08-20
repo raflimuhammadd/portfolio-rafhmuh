@@ -5,6 +5,7 @@ import Footer from '../../components/site/Footer.astro';
 import Badge from '../../components/ui/Badge.astro';
 import Button from '../../components/ui/Button.astro';
 import SectionAccordion from '../../components/ui/SectionAccordion.astro';
+import ImageGalleryModal from '../../components/ui/ImageGalleryModal.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { SECTION_CONFIG, parseSection, parseOutcomes } from '../../utils/parseMarkdownSections';
@@ -124,13 +125,13 @@ const renderSection = (section: RenderedSection): string => {
             {project.data.description}
           </p>
 
-          <!-- Image Gallery - Thumbnails Grid -->
-          <div class="mb-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-2">
-            {images.map((img: string, idx: number) => (
-              <button
-                onclick={`openModal(${idx})`}
-                class="group relative aspect-video w-full overflow-hidden rounded-lg border-4 border-neo-black bg-neo-white shadow-neo-md transition-all duration-200 hover:-translate-y-1 hover:shadow-neo-xl focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
-              >
+           <!-- Image Gallery - Thumbnails Grid -->
+           <div class="mb-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-2" id="gallery-thumbnails">
+             {images.map((img: string, idx: number) => (
+               <button
+                 class="gallery-trigger group relative aspect-video w-full overflow-hidden rounded-lg border-4 border-neo-black bg-neo-white shadow-neo-md transition-all duration-200 hover:-translate-y-1 hover:shadow-neo-xl focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
+                 data-gallery-index={idx}
+               >
                 <img
                   src={img}
                   alt={`${project.data.title} - Image ${idx + 1}`}
@@ -284,104 +285,11 @@ const renderSection = (section: RenderedSection): string => {
     </div>
 
     <!-- Image Gallery Modal -->
-    <div id="imageModal" class="hidden fixed inset-0 z-50 items-center justify-center bg-neo-black/90 backdrop-blur-sm">
-      <div class="relative flex h-full w-full items-center justify-center p-4 md:p-8">
-        <button
-          id="modalClose"
-          class="absolute right-4 top-4 z-50 border-4 border-neo-black bg-neo-white px-4 py-2 font-black uppercase shadow-neo-md hover:bg-neo-accent hover:text-neo-white"
-          aria-label="Close modal"
-        >
-          ✕
-        </button>
-
-        <button
-          id="modalPrev"
-          class="absolute left-4 z-40 hidden md:block border-4 border-neo-black bg-neo-white px-6 py-4 font-black uppercase shadow-neo-lg hover:bg-neo-accent hover:text-neo-white"
-          aria-label="Previous image"
-        >
-          ←
-        </button>
-
-        <div class="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg border-8 border-neo-black bg-neo-white">
-          <img
-            id="modalImage"
-            src=""
-            alt="Project image"
-            class="h-auto max-h-[90vh] w-auto max-w-[90vw] object-contain"
-          />
-        </div>
-
-        <button
-          id="modalNext"
-          class="absolute right-4 z-40 hidden md:block border-4 border-neo-black bg-neo-white px-6 py-4 font-black uppercase shadow-neo-lg hover:bg-neo-accent hover:text-neo-white"
-          aria-label="Next image"
-        >
-          →
-        </button>
-      </div>
-
-      <div class="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full border-4 border-neo-black bg-neo-white/95 px-6 py-3 shadow-neo-md">
-        <span id="modalCounter" class="font-black uppercase tracking-widest text-neo-black">1 / 1</span>
-      </div>
-    </div>
+    <ImageGalleryModal images={images} />
   </main>
 
   <Footer />
 </BaseLayout>
-
-<script define:vars={{ images }}>
-  let currentImageIndex = 0;
-
-  const modal = document.getElementById('imageModal');
-  const modalImage = document.getElementById('modalImage');
-  const modalCounter = document.getElementById('modalCounter');
-  const modalClose = document.getElementById('modalClose');
-  const modalPrev = document.getElementById('modalPrev');
-  const modalNext = document.getElementById('modalNext');
-
-  function openModal(index) {
-    currentImageIndex = index;
-    updateModal();
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeModal() {
-    modal.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  function updateModal() {
-    modalImage.src = images[currentImageIndex];
-    modalCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
-  }
-
-  function nextImage() {
-    currentImageIndex = (currentImageIndex + 1) % images.length;
-    updateModal();
-  }
-
-  function prevImage() {
-    currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-    updateModal();
-  }
-
-  modalClose.addEventListener('click', closeModal);
-  modalPrev.addEventListener('click', prevImage);
-  modalNext.addEventListener('click', nextImage);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (modal.classList.contains('hidden')) return;
-    if (e.key === 'ArrowRight') nextImage();
-    if (e.key === 'ArrowLeft') prevImage();
-    if (e.key === 'Escape') closeModal();
-  });
-
-  window.openModal = openModal;
-</script>
 
 <style>
   .prose {
@@ -404,3 +312,19 @@ const renderSection = (section: RenderedSection): string => {
     @apply font-black text-neo-accent;
   }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const galleryTriggers = document.querySelectorAll('.gallery-trigger');
+    
+    galleryTriggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const index = parseInt(trigger.getAttribute('data-gallery-index') || '0', 10);
+        const openGallery = (window as any).openGalleryModal;
+        if (typeof openGallery === 'function') {
+          openGallery(index);
+        }
+      });
+    });
+  });
+</script>

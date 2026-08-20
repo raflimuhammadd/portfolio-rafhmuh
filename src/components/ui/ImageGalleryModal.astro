@@ -1,62 +1,21 @@
 ---
-import Button from './Button.astro';
-import { createSignal, onCleanup, onMount } from 'solid-js';
-
 interface Props {
   images: string[];
-  open: boolean;
-  onClose: () => void;
-  initialIndex?: number;
 }
 
-const { images, open, onClose, initialIndex = 0 } = Astro.props;
-
-const [currentIndex, setCurrentIndex] = createSignal(initialIndex);
-const [isAnimating, setIsAnimating] = createSignal(false);
-
-const nextImage = () => {
-  if (isAnimating()) return;
-  setIsAnimating(true);
-  setCurrentIndex((prev) => (prev + 1) % images.length);
-  setTimeout(() => setIsAnimating(false), 300);
-};
-
-const prevImage = () => {
-  if (isAnimating()) return;
-  setIsAnimating(true);
-  setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  setTimeout(() => setIsAnimating(false), 300);
-};
-
-const handleKeyDown = (e: KeyboardEvent) => {
-  if (!open) return;
-  if (e.key === 'ArrowRight') nextImage();
-  if (e.key === 'ArrowLeft') prevImage();
-  if (e.key === 'Escape') onClose();
-};
-
-onMount(() => {
-  window.addEventListener('keydown', handleKeyDown);
-  document.body.style.overflow = 'hidden';
-});
-
-onCleanup(() => {
-  window.removeEventListener('keydown', handleKeyDown);
-  document.body.style.overflow = '';
-});
-
-const handleBackdropClick = (e: MouseEvent) => {
-  if (e.target === e.currentTarget) onClose();
-};
+const { images } = Astro.props;
 ---
 
 <div
-  class={`fixed inset-0 z-50 flex items-center justify-center bg-neo-black/90 backdrop-blur-sm transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
-  onClick={handleBackdropClick}
+  id="image-gallery-modal"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-neo-black/90 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none"
+  data-gallery="modal"
 >
+  <div id="gallery-backdrop" class="absolute inset-0"></div>
+  
   <div class="relative flex h-full w-full items-center justify-center p-4 md:p-8">
     <button
-      onClick={onClose}
+      id="gallery-close-btn"
       class="absolute right-4 top-4 z-50 border-4 border-neo-black bg-neo-white px-4 py-2 font-black uppercase shadow-neo-md hover:bg-neo-accent hover:text-neo-white focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
       aria-label="Close modal"
     >
@@ -64,33 +23,131 @@ const handleBackdropClick = (e: MouseEvent) => {
     </button>
 
     <button
-      onClick={prevImage}
-      class="absolute left-4 z-40 hidden md:block border-4 border-neo-black bg-neo-white px-6 py-4 font-black uppercase shadow-neo-lg hover:bg-neo-accent hover:text-neo-white focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
+      id="gallery-prev-btn"
+      class="absolute left-2 md:left-4 z-40 border-4 border-neo-black bg-neo-white/90 md:bg-neo-white px-4 md:px-6 py-3 md:py-4 font-black text-xl md:text-2xl shadow-neo-lg hover:bg-neo-accent hover:text-neo-white focus:outline-none focus:ring-4 focus:ring-neo-accent/30 min-w-[44px] min-h-[44px]"
       aria-label="Previous image"
     >
       ←
     </button>
 
-    <div class="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg border-8 border-neo-black bg-neo-white shadow-neo-2xl transition-all duration-300">
+    <div id="gallery-image-container" class="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-lg border-8 border-neo-black bg-neo-white shadow-neo-2xl">
       <img
-        src={images[currentIndex()]}
-        alt={`Project image ${currentIndex() + 1}`}
-        class={`h-auto max-h-[90vh] w-auto max-w-[90vw] object-contain transition-opacity duration-300 ${isAnimating() ? 'opacity-0' : 'opacity-100'}`}
+        id="gallery-image"
+        src={images[0]}
+        alt="Project image 1"
+        class="h-auto max-h-[90vh] w-auto max-w-[90vw] object-contain"
       />
     </div>
 
     <button
-      onClick={nextImage}
-      class="absolute right-4 z-40 hidden md:block border-4 border-neo-black bg-neo-white px-6 py-4 font-black uppercase shadow-neo-lg hover:bg-neo-accent hover:text-neo-white focus:outline-none focus:ring-4 focus:ring-neo-accent/30"
+      id="gallery-next-btn"
+      class="absolute right-2 md:right-4 z-40 border-4 border-neo-black bg-neo-white/90 md:bg-neo-white px-4 md:px-6 py-3 md:py-4 font-black text-xl md:text-2xl shadow-neo-lg hover:bg-neo-accent hover:text-neo-white focus:outline-none focus:ring-4 focus:ring-neo-accent/30 min-w-[44px] min-h-[44px]"
       aria-label="Next image"
     >
       →
     </button>
   </div>
 
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 rounded-full border-4 border-neo-black bg-neo-white/95 px-6 py-3 shadow-neo-md">
-    <span class="font-black uppercase tracking-widest text-neo-black">
-      {currentIndex() + 1} / {images.length}
+  <div class="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 rounded-full border-4 border-neo-black bg-neo-white/95 px-4 md:px-6 py-2 md:py-3 shadow-neo-md z-50">
+    <span id="gallery-counter" class="font-black uppercase tracking-widest text-neo-black text-sm md:text-base">
+      1 / {images.length}
     </span>
   </div>
 </div>
+
+<style>
+  #image-gallery-modal.modal-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+</style>
+
+<script define:vars={{ images }}>
+  let currentIndex = 0;
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  const modal = document.getElementById('image-gallery-modal');
+  const imageEl = document.getElementById('gallery-image');
+  const counterEl = document.getElementById('gallery-counter');
+  const closeBtn = document.getElementById('gallery-close-btn');
+  const prevBtn = document.getElementById('gallery-prev-btn');
+  const nextBtn = document.getElementById('gallery-next-btn');
+  const backdrop = document.getElementById('gallery-backdrop');
+  const imageContainer = document.getElementById('gallery-image-container');
+
+  const updateImage = () => {
+    if (imageEl && counterEl) {
+      imageEl.src = images[currentIndex];
+      imageEl.alt = `Project image ${currentIndex + 1}`;
+      counterEl.textContent = `${currentIndex + 1} / ${images.length}`;
+    }
+  };
+
+  const nextImage = () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  };
+
+  const prevImage = () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  };
+
+  const closeModal = () => {
+    if (modal) {
+      modal.classList.remove('modal-open');
+      document.body.style.overflow = '';
+    }
+  };
+
+  const openModal = (index) => {
+    currentIndex = index;
+    if (modal) {
+      modal.classList.add('modal-open');
+      document.body.style.overflow = 'hidden';
+      updateImage();
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (!modal?.classList.contains('modal-open')) return;
+    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'Escape') closeModal();
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const distance = touchStartX - touchEndX;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(distance) > minSwipeDistance) {
+      if (distance > 0) {
+        nextImage();
+      } else {
+        prevImage();
+      }
+    }
+  };
+
+  closeBtn?.addEventListener('click', closeModal);
+  prevBtn?.addEventListener('click', prevImage);
+  nextBtn?.addEventListener('click', nextImage);
+  backdrop?.addEventListener('click', (e) => {
+    if (e.target === backdrop) closeModal();
+  });
+  imageContainer?.addEventListener('touchstart', handleTouchStart);
+  imageContainer?.addEventListener('touchend', handleTouchEnd);
+  document.addEventListener('keydown', handleKeyDown);
+
+  window.openGalleryModal = openModal;
+</script>

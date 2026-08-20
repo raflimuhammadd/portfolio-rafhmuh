@@ -2,10 +2,9 @@
 interface Props {
   title: string;
   defaultOpen?: boolean;
-  children: any;
 }
 
-const { title, defaultOpen = false, children } = Astro.props;
+const { title, defaultOpen = false } = Astro.props;
 ---
 
 <div class="accordion-item mb-4 overflow-hidden border-4 border-neo-black bg-neo-white shadow-neo-md">
@@ -27,22 +26,22 @@ const { title, defaultOpen = false, children } = Astro.props;
 
 <script>
   document.querySelectorAll('.accordion-button').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function(this: HTMLButtonElement) {
       const item = this.closest('.accordion-item');
-      const content = item.querySelector('.accordion-content');
-      const icon = item.querySelector('.accordion-icon');
+      const content = item?.querySelector('.accordion-content');
+      const icon = item?.querySelector('.accordion-icon');
       const isOpen = this.dataset.open === 'true';
       
-      this.dataset.open = !isOpen;
+      this.dataset.open = String(!isOpen);
       
       if (!isOpen) {
-        content.classList.remove('max-h-0', 'opacity-0');
-        content.classList.add('max-h-[2000px]', 'opacity-100');
-        icon.textContent = '−';
+        content?.classList.remove('max-h-0', 'opacity-0');
+        content?.classList.add('max-h-[2000px]', 'opacity-100');
+        if (icon) icon.textContent = '−';
       } else {
-        content.classList.add('max-h-0', 'opacity-0');
-        content.classList.remove('max-h-[2000px]', 'opacity-100');
-        icon.textContent = '+';
+        content?.classList.add('max-h-0', 'opacity-0');
+        content?.classList.remove('max-h-[2000px]', 'opacity-100');
+        if (icon) icon.textContent = '+';
       }
     });
   });
