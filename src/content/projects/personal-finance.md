@@ -2,7 +2,7 @@
 title: "Personal Finance Tracker"
 slug: "personal-finance"
 category: "personal"
-year: 2024
+year: 2025
 featured: true
 description: "Progressive Web App for tracking personal finances with offline-first design and rich data visualization."
 image: "/images/projects/personal-hero.jpg"
@@ -15,7 +15,7 @@ images:
   - "/images/projects/finance/login-page.png"
 techStack: ["Laravel 12", "React 18", "Inertia JS", "SPA", "Indexed DB"]
 links:
-  github: "https://github.com/raflimuhammadd/finance-tracker"
+  github: "https://github.com/raflimuhammadd/cuan-planner"
   demo: "https://finance.raflimuhammadd.dev"
 ---
 
@@ -25,7 +25,6 @@ links:
 Progressive Web App untuk track personal finances dengan offline-first design dan data visualization. Aplikasi ini membantu pengguna melacak dan mengelola keuangan pribadi secara komprehensif dengan interface yang elegant dan user-friendly.
 
 ## The Challenge
-Financial data memiliki relasi yang kompleks:
 - Income dan Expense terhubung dengan Payment methods, Budgets, dan Categories
 - Net Worth merupakan aggregate dari multiple Assets dan Liabilities dengan tipe berbeda
 - Goals tracking memerlukan historical Balance records

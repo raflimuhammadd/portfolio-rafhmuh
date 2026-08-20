@@ -50,10 +50,10 @@ const renderBulletSection = (parsed: ParsedSection | null): string => {
   }
   
   const bulletHtml = parsed.bullets
-    .map(bullet => `<li class="mb-2 leading-relaxed">${bullet}</li>`)
+    .map(bullet => `<li class="mb-2 leading-relaxed pl-2">${bullet}</li>`)
     .join('');
   
-  return `<ul class="list-inside list-disc font-bold">${bulletHtml}</ul>`;
+  return `<ul class="list-outside list-disc font-bold space-y-1">${bulletHtml}</ul>`;
 };
 
 const renderOutcomesSection = (parsed: ParsedSection | null): OutcomeItem[] => {

@@ -110,7 +110,7 @@ export interface OutcomeItem {
 export const parseOutcomes = (bullets: string[]): OutcomeItem[] => {
   return bullets.map((item: string) => {
     const match = item.match(
-      /(\d+(?:\.\d+)?%|\d+(?:,\d{3})+\+?|\d+(?:\.\d+)?\s*(ms|s|FPS|GB|TB|x|menit|minutes?))/i
+      /(\d+(?:\.\d+)?(?:[,\d]*)?%?(?:\s*(?:ms|s|FPS|GB|TB|x|menit|minutes?))?)/i
     );
 
     if (match) {
