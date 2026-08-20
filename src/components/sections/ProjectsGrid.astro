@@ -30,7 +30,10 @@ const featuredProjects = allProjects.filter((p: typeof allProjects[0]) => p.data
             <Badge variant={
               project.data.category === 'web' ? 'accent' :
               project.data.category === 'cloud' ? 'secondary' :
-              'muted'
+              project.data.category === 'api' ? 'tertiary' :
+              project.data.category === 'ml' ? 'quaternary' :
+              project.data.category === 'personal' ? 'quinary' :
+              'senary'
             }>
               {project.data.category}
             </Badge>

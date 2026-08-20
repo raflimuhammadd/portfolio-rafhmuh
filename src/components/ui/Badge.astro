@@ -1,6 +1,6 @@
 ---
 interface Props {
-  variant?: 'accent' | 'secondary' | 'muted' | 'black';
+  variant?: 'accent' | 'secondary' | 'tertiary' | 'quaternary' | 'quinary' | 'senary' | 'muted' | 'black';
   rotate?: boolean;
   class?: string;
 }
@@ -14,6 +14,10 @@ const {
 const variants = {
   accent: 'bg-neo-accent text-neo-black',
   secondary: 'bg-neo-secondary text-neo-black',
+  tertiary: 'bg-neo-tertiary text-neo-black',
+  quaternary: 'bg-neo-quaternary text-neo-black',
+  quinary: 'bg-neo-quinary text-neo-black',
+  senary: 'bg-neo-senary text-neo-black',
   muted: 'bg-neo-muted text-neo-black',
   black: 'bg-neo-black text-neo-white',
 };
