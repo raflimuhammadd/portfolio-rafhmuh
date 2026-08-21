@@ -3,6 +3,7 @@ import Section from '../ui/Section.astro';
 import Card from '../ui/Card.astro';
 import Badge from '../ui/Badge.astro';
 import Button from '../ui/Button.astro';
+import { getCategoryVariant } from '../../utils/categoryColors';
 import { getCollection } from 'astro:content';
 
 const allProjects = await getCollection('projects');
@@ -27,14 +28,7 @@ const featuredProjects = allProjects.filter((p: typeof allProjects[0]) => p.data
       {featuredProjects.map((project: (typeof featuredProjects)[number], index: number) => (
         <Card class={`flex flex-col h-full ${['rotate-2', '-rotate-1', 'rotate-1'][index]}`}>
           <div class="flex-1 flex flex-col gap-4 p-10">
-            <Badge variant={
-              project.data.category === 'web' ? 'accent' :
-              project.data.category === 'cloud' ? 'secondary' :
-              project.data.category === 'api' ? 'tertiary' :
-              project.data.category === 'ml' ? 'quaternary' :
-              project.data.category === 'personal' ? 'quinary' :
-              'senary'
-            }>
+            <Badge variant={getCategoryVariant(project.data.category)}>
               {project.data.category}
             </Badge>
 

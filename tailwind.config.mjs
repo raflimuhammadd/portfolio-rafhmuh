@@ -13,6 +13,8 @@ export default {
         'neo-quinary': '#F87171',
         'neo-senary': '#60A5FA',
         'neo-muted': '#C4B5FD',
+        'neo-septenary': '#6BCB77',
+        'neo-octonary': '#FF9F45',
         'neo-white': '#FFFFFF',
       },
       fontFamily: {

@@ -10,7 +10,7 @@ const projects = defineCollection({
   schema: z.object({
     title: z.string(),
     slug: z.string(),
-    category: z.enum(['web', 'cloud', 'api', 'ml', 'personal', 'academic']),
+    category: z.enum(['web', 'cloud', 'api', 'ml', 'personal', 'academic', 'fun']),
     year: z.number(),
     featured: z.boolean().default(false),
     description: z.string(),

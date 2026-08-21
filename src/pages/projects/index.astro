@@ -5,6 +5,7 @@ import Footer from '../../components/site/Footer.astro';
 import Card from '../../components/ui/Card.astro';
 import Badge from '../../components/ui/Badge.astro';
 import Button from '../../components/ui/Button.astro';
+import { getCategoryVariant } from '../../utils/categoryColors';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
@@ -62,7 +63,7 @@ const sortedProjects = projects.sort(
           <button class="border-4 border-neo-black bg-neo-white px-4 py-2 font-bold text-sm uppercase tracking-wide hover:bg-neo-secondary" data-category="all">
             All
           </button>
-          {['web', 'cloud', 'api', 'ml', 'personal', 'academic'].map((cat) => (
+           {['web', 'cloud', 'api', 'ml', 'personal', 'academic', 'fun'].map((cat) => (
             <button 
               class="border-4 border-neo-black bg-neo-white px-4 py-2 font-bold text-sm uppercase tracking-wide hover:bg-neo-muted" 
               data-category={cat}
@@ -80,12 +81,7 @@ const sortedProjects = projects.sort(
             <div class="flex h-full flex-col gap-4 p-6">
               <!-- Badge -->
               <div class="flex items-center justify-between">
-                <Badge variant={
-                  project.data.category === 'web' ? 'accent' :
-                  project.data.category === 'cloud' ? 'secondary' :
-                  project.data.category === 'api' ? 'muted' :
-                  'accent'
-                }>
+                <Badge variant={getCategoryVariant(project.data.category)}>
                   {project.data.category}
                 </Badge>
                 {project.data.featured && (

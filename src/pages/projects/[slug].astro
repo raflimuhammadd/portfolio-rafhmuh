@@ -8,6 +8,7 @@ import SectionAccordion from '../../components/ui/SectionAccordion.astro';
 import ImageGalleryModal from '../../components/ui/ImageGalleryModal.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { getCategoryVariant } from '../../utils/categoryColors';
 import { SECTION_CONFIG, parseSection, parseOutcomes } from '../../utils/parseMarkdownSections';
 import type { ParsedSection, SectionConfig, OutcomeItem } from '../../utils/parseMarkdownSections';
 
@@ -219,11 +220,7 @@ const renderSection = (section: RenderedSection): string => {
               <div class="space-y-4">
                 <div>
                   <p class="mb-2 font-bold uppercase tracking-widest text-neo-muted">Category</p>
-                  <Badge variant={
-                    project.data.category === 'web' ? 'accent' :
-                    project.data.category === 'cloud' ? 'secondary' :
-                    project.data.category === 'api' ? 'muted' : 'accent'
-                  }>
+                  <Badge variant={getCategoryVariant(project.data.category)}>
                     {project.data.category.toUpperCase()}
                   </Badge>
                 </div>
