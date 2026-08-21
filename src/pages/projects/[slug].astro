@@ -47,10 +47,18 @@ const renderTextSection = (parsed: ParsedSection | null): string => {
 };
 
 const renderBulletSection = (parsed: ParsedSection | null): string => {
-  if (!parsed || !parsed.hasBullets) {
+  if (!parsed || (!parsed.hasBullets && !parsed.nestedBullets?.length)) {
     return '<p class="text-neo-muted">No items</p>';
   }
-  
+
+  if (parsed.nestedBullets && parsed.nestedBullets.length > 0) {
+    const nestedHtml = parsed.nestedBullets.map(item => {
+      const itemsHtml = item.items.map(i => `<li class="mb-1 leading-relaxed pl-2 text-gray-700">${i}</li>`).join('');
+      return `<div class="mb-6"><strong class="font-black text-neo-accent mb-2 block text-lg">${item.title}</strong><ul class="list-outside list-disc space-y-1">${itemsHtml}</ul></div>`;
+    }).join('');
+    return nestedHtml;
+  }
+
   const bulletHtml = parsed.bullets
     .map(bullet => `<li class="mb-2 leading-relaxed pl-2">${bullet}</li>`)
     .join('');

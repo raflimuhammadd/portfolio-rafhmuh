@@ -3,8 +3,14 @@ export interface ParsedSection {
     content: string;
     intro?: string;
     bullets: string[];
+    nestedBullets?: NestedBulletItem[];
     hasBullets: boolean;
     hasIntro: boolean;
+}
+
+export interface NestedBulletItem {
+    title: string;
+    items: string[];
 }
 
 export interface SectionConfig {
@@ -64,37 +70,75 @@ export const parseSection = (
   sectionName: string,
   markdownBody: string
 ): ParsedSection | null => {
-  // Regex to extract section
   const pattern = new RegExp(`## ${sectionName}([\\s\\S]*?)(?=##|$)`);
   const match = markdownBody.match(pattern);
 
   if (!match) return null;
 
-const rawContent = match[1].trim();
-const lines = rawContent.split('\n').filter(line => line.trim());
+  const rawContent = match[1].trim();
+  const lines = rawContent.split('\n').filter(line => line.trim());
 
-let introLines: string[] = [];
-let bulletLines: string[] = [];
-let foundFirstBullet = false;
+  const hasNestedStructure = lines.some(line => 
+    line.trim().startsWith('-') && line.search(/\S/) === 2
+  );
 
-  lines.forEach(line => {
-    if (line.trim().startsWith('-')) {
+  let introLines: string[] = [];
+  let bulletLines: string[] = [];
+  let nestedBullets: NestedBulletItem[] = [];
+  let foundFirstBullet = false;
+
+  if (hasNestedStructure) {
+    let currentNestedTitle: string | null = null;
+    let currentNestedItems: string[] = [];
+
+    lines.forEach(line => {
+      const trimmedLine = line.trim();
+      
+      if (trimmedLine.startsWith('-')) {
+        const indent = line.search(/\S/);
+        const content = trimmedLine.replace(/^-\s*/, '').trim();
+        
+        if (indent === 0) {
+          if (currentNestedTitle) {
+            nestedBullets.push({ title: currentNestedTitle, items: currentNestedItems });
+          }
+          
+          foundFirstBullet = true;
+          currentNestedTitle = content;
+          currentNestedItems = [];
+        } else if (indent === 2 && currentNestedTitle) {
+          currentNestedItems.push(content);
+        }
+      } else if (trimmedLine) {
+        if (!foundFirstBullet) {
+          introLines.push(line);
+        }
+      }
+    });
+    
+    if (currentNestedTitle) {
+      nestedBullets.push({ title: currentNestedTitle, items: currentNestedItems });
+    }
+  } else {
+    lines.forEach(line => {
+      if (line.trim().startsWith('-')) {
         foundFirstBullet = true;
         bulletLines.push(line.replace(/^-\s*/, '').trim());
-    } else if (line.trim()) {
-        if (foundFirstBullet) {
-        } else {
-            introLines.push(line);
+      } else if (line.trim()) {
+        if (!foundFirstBullet) {
+          introLines.push(line);
         }
-    }
-  });
+      }
+    });
+  }
 
   return {
     title: sectionName,
     content: introLines.join('\n') || '',
     intro: introLines.length > 0 ? introLines.join('\n') : undefined,
     bullets: bulletLines,
-    hasBullets: bulletLines.length > 0,
+    nestedBullets: nestedBullets.length > 0 ? nestedBullets : undefined,
+    hasBullets: bulletLines.length > 0 || nestedBullets.length > 0,
     hasIntro: introLines.length > 0,
   };
 };
