@@ -22,37 +22,37 @@ links:
 # Capstone Project: Smart Attendance System
 
 ## Overview
-Full-stack streaming platform yang dibangun selama Harisenin Fullstack Bootcamp 2026. Platform ini mendukung browsing konten, video player custom, sistem langganan dengan 3 tier (Individual/Berdua/Keluarga), payment gateway Midtrans, email verification, dan manajemen user profile.
+A full-stack streaming platform built during the Harisenin Fullstack Bootcamp 2026. The platform supports content browsing, a custom video player, a three-tier subscription system (Individual/Couple/Family), the Midtrans payment gateway, email verification, and user profile management.
 
 ## The Challenge
-- Membangun platform streaming video yang fungsional layaknya Netflix dari nol dalam konteks bootcamp.
-- Kontrol autentikasi yang aman, video player yang responsif dengan kontrol lengkap, sistem pembayaran berlangganan real-time via Midtrans.
-- Manajemen konten film & series dengan episode, serta arsitektur kode yang bersih dan scalable dengan feature-first modular pattern.
+- Build a fully functional video streaming platform similar to Netflix from scratch as part of a bootcamp.
+- Secure authentication, a responsive video player with full controls, and a real-time subscription payment system via Midtrans.
+- Manage movies and TV series by episode, and implement a clean, scalable code architecture using a feature-first modular approach.
 
 ## Key Features
-- Auth System: Register/login dengan email verification via UUID token + Nodemailer, JWT + bcrypt hashing.
-- Content Catalog: Movies & TV series dengan 14 genre, detail page dengan rekomendasi konten.
-- Custom Video Player: Play/pause, volume, fullscreen, subtitle, playback speed, episode list menu, next episode overlay, premium gate modal.
-- Subscription System: 3 tier (Individual Rp49,990 720p, Berdua Rp79,990 1080p, Keluarga Rp159,990 4K).
-- Payment Integration: Midtrans Snap (bank transfer, save-card) dengan webhook notification handler.
-- Search & Discovery: Filter-based search dengan debounced input, category pages (Trending, Top Rating, New Release).
-- My List & History: Favorites tersimpan di localStorage (Zustand), watch history tersinkronisasi ke database (Redux Toolkit).
-- Profile Management: Edit profil + avatar upload via multer
+- Authentication System: Sign up/log in with email verification via UUID token + Nodemailer, JWT + bcrypt hashing.
+- Content Catalog: Movies and TV series across 14 genres, with detail pages featuring content recommendations.
+- Custom Video Player: Play/pause, volume, full screen, subtitles, playback speed, episode list menu, next episode overlay, and premium gate modal.
+- Subscription System: 3 tiers (Individual: Rp49,990 for 720p; Couple: Rp79,990 for 1080p; Family: Rp159,990 for 4K).
+- Payment Integration: Midtrans Snap (bank transfer, save-card) with a webhook notification handler.
+- Search & Discovery: Filter-based search with debounced input, category pages (Trending, Top Rated, New Releases).
+- My List & History: Favorites stored in localStorage (Zustand), watch history synchronized to the database (Redux Toolkit).
+- Profile Management: Edit profile + upload avatar via multer
 
 ## The Solution
-- Mengimplementasikan feature-first modular architecture dengan pemisahan state management Zustand untuk state ringan dan Redux Toolkit untuk state yang perlu sinkronisasi server (users, watch history). 
-- Backend menggunakan layered architecture (Routes → Controller → Service → Database) dengan custom error class hierarchy dan centralized API response. Database MySQL dengan 11 tabel yang saling terhubung via foreign keys, didukung oleh connection pooling untuk performa optimal.
+- Implemented a feature-first modular architecture with separate state management: Zustand for lightweight state and Redux Toolkit for state requiring server synchronization (users, watch history).
+- The backend uses a layered architecture (Routes → Controller → Service → Database) with a custom error class hierarchy and centralized API responses. The MySQL database consists of 11 tables interconnected via foreign keys, supported by connection pooling for optimal performance.
 
 ## Outcomes & Impact
 - 12,158 lines of code (9,338 frontend + 2,820 backend)
-- 68 React components dengan feature-based modular organization
-- 31 Backend modules dengan clean layered architecture
-- 7 API route groups dengan auth middleware yang terproteksi
-- 11 database tables dengan relasi foreign key yang terstruktur
-- 3 Pilihan payment method integrasi payment gateway Midtrans (Snap + bank transfer + save-card)
+- 68 React components with a feature-based modular organization
+- 31 backend modules with a clean, layered architecture
+- 7 API route groups with protected auth middleware
+- 11 database tables with structured foreign key relationships
+- 3 payment method options integrated with the Midtrans payment gateway (Snap + bank transfer + save-card)
 
 ## Lessons Learned
-- Feature-first architecture memudahkan navigasi kode dalam project skala menengah dibandingkan folder-based organization
-- Layered backend (Routes → Controller → Service → DB) memisahkan concerns dengan baik dan memudahkan testing
-- MySQL 8.4 dengan connection pooling memberikan performa konsisten untuk queries multi-table join (contents + episodes + genres + recommendations)
-- Midtrans integration memerlukan pemahaman mendalam tentang webhook patterns dan payment verification flow
+- Feature-first architecture makes it easier to navigate the code in a medium-sized project compared to folder-based organization
+- A layered backend (Routes → Controller → Service → DB) effectively separates concerns and simplifies testing
+- MySQL 8.4 with connection pooling delivers consistent performance for multi-table join queries (contents + episodes + genres + recommendations)
+- Midtrans integration requires a deep understanding of webhook patterns and the payment verification flow

@@ -254,21 +254,23 @@ const renderSection = (section: RenderedSection): string => {
             </div>
 
             <!-- Links Card -->
-            <div class="border-4 border-neo-black bg-neo-white p-6 shadow-neo-lg">
-              <h3 class="mb-4 font-black text-lg uppercase">Links</h3>
-              <div class="space-y-3">
-                {project.data.links.github && (
-                  <Button href={project.data.links.github} variant="outline" class="w-full" target="_blank">
-                    GitHub
-                  </Button>
-                )}
-                {project.data.links.demo && (
-                  <Button href={project.data.links.demo} variant="primary" class="w-full" target="_blank">
-                    Live Demo
-                  </Button>
-                )}
+            {(project.data.links.github || project.data.links.demo) && (
+              <div class="border-4 border-neo-black bg-neo-white p-6 shadow-neo-lg">
+                <h3 class="mb-4 font-black text-lg uppercase">Links</h3>
+                <div class="space-y-3">
+                  {project.data.links.github && (
+                    <Button href={project.data.links.github} variant="outline" class="w-full" target="_blank">
+                      GitHub
+                    </Button>
+                  )}
+                  {project.data.links.demo && (
+                    <Button href={project.data.links.demo} variant="primary" class="w-full" target="_blank">
+                      Live Demo
+                    </Button>
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
             <!-- Mobile Back Button (only visible on mobile) -->
             <div class="lg:hidden">

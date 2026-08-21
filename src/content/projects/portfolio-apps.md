@@ -4,7 +4,7 @@ slug: "portfolio-app"
 category: "web"
 year: 2025
 featured: true
-description: Portfolio website untuk agensi digital dengan showcase proyek, sistem booking order, dan admin dashboard untuk mengelola konten."
+description: "Portfolio website untuk agensi digital dengan showcase proyek, sistem booking order, dan admin dashboard untuk mengelola konten."
 image: "/images/projects/cloud-hero.jpg"
 images:
   - "/images/projects/portfolio-cms/page-1.png"
@@ -25,32 +25,32 @@ links:
 ---
 
 ## Overview
-Website portofolio untuk agensi/freelancer digital yang menampilkan proyek secara publik sekaligus menyediakan alur booking jasa — klien isi brief, masuk ke database, dikelola lewat admin dashboard.
+A portfolio website for digital agencies and freelancers that publicly showcases projects while also providing a service booking process—clients fill out a brief, which is added to the database and managed through the admin dashboard.
 
 ## The Challenge
-- Konten portofolio harus bisa diupdate tanpa deploy ulang → butuh CMS, bukan halaman statis
-- Satu codebase untuk dua pengalaman berbeda: landing page publik yang cepat dan panel admin yang fungsional
-- Order dari klien butuh integritas data (relasi proyek–tool–screenshot) → rawan data yatim jika insert parsial
+- Portfolio content must be updatable without redeployment → requires a CMS, not static pages
+- A single codebase for two distinct experiences: a fast public landing page and a functional admin panel
+- Client orders require data integrity (project–tool–screenshot relationships) → prone to orphaned data in case of partial inserts
 
 ## Key Features
-- Showcase proyek. listing + halaman detail per slug, lengkap dengan cover, screenshots, dan tools yang dipakai
-- Booking order. form brief (nama, email, kategori layanan, budget, deskripsi) dengan validasi server-side
-- Admin dashboard (auth via Breeze). CRUD Projects, Tools, relasi Project↔Tool, Screenshots, kelola Testimonials, dan lihat daftar order masuk
-- Environment dev terkontainerisasi via Docker Compose.
-- Soft delete di semua entitas utama — data tidak hilang permanen
+- Project showcase: listings + detail pages per slug, complete with cover images, screenshots, and tools used
+- Booking orders: brief form (name, email, service category, budget, description) with server-side validation
+- Admin dashboard (authentication via Breeze). CRUD operations for Projects, Tools, Project↔Tool relationships, Screenshots, manage Testimonials, and view the list of incoming orders
+- Containerized development environment via Docker Compose.
+- Soft delete on all primary entities — data is not permanently lost
 
 ## The Solution
-- Monolith Laravel dengan Blade template — tanpa SPA, sehingga cepat & sederhana
-- Interaktivitas ringan (dropdown, modal) pakai Alpine.js, styling Tailwind CSS
-- Route model binding (Project $project via slug) untuk URL detail yang bersih
-- Alur simpan order dibungkus DB Transaction/commit/rollback supaya atomik
+- Laravel monolith with Blade templates — no SPA, so it’s fast and simple
+- Lightweight interactivity (dropdowns, modals) using Alpine.js, styled with Tailwind CSS
+- Route-model binding (Project $project via slug) for clean detail URLs
+- The order-saving workflow is wrapped in a database transaction (commit/rollback) to ensure atomicity
 
 ## Outcomes & Impact
-- Setup dev reproducible satu perintah (docker-compose up) berkat Sail + Compose
-- Portofolio bisa dikelola penuh non-developer -> tambah proyek, screenshot, tool, testimoni tanpa sentuh kode
-- Setiap order masuk terekam terstruktur di database — tidak lagi tersebar di email/DM.
+- A single-command, reproducible dev setup (docker-compose up) thanks to Sail + Compose
+- Non-developers can fully manage the portfolio -> add projects, screenshots, tools, and testimonials without touching any code
+- Every incoming order is recorded in a structured format in the database — no longer scattered across emails or DMs.
 
 ## Lessons Learned
-- Transaksi DB wajib begitu satu aksi menulis ke lebih dari satu tabel
-- Blade + Alpine cukup untuk situs konten SPA hanya menambah kompleksitas tanpa nilai di sini
-- Soft delete + filter pivot sejak awal menghemat migrasi data di kemudian hari
+- Database transactions are required whenever a single write operation affects more than one table
+- Blade + Alpine is sufficient for a content-based SPA; adding more would only increase complexity without providing any value here
+- Using soft deletes and pivot filters from the start saves on data migration later on

@@ -22,36 +22,36 @@ links:
 # Personal Finance Tracker
 
 ## Overview
-Progressive Web App untuk track personal finances dengan offline-first design dan data visualization. Aplikasi ini membantu pengguna melacak dan mengelola keuangan pribadi secara komprehensif dengan interface yang elegant dan user-friendly.
+A Progressive Web App for tracking personal finances with an offline-first design and data visualization. This app helps users track and manage their personal finances comprehensively with an elegant and user-friendly interface.
 
 ## The Challenge
-- Income dan Expense terhubung dengan Payment methods, Budgets, dan Categories
-- Net Worth merupakan aggregate dari multiple Assets dan Liabilities dengan tipe berbeda
-- Goals tracking memerlukan historical Balance records
-- Annual reports membutuhkan aggregation data dari multiple tables dengan month/year filtering
+- Income and Expenses are linked to Payment Methods, Budgets, and Categories
+- Net Worth is the aggregate of multiple Assets and Liabilities of different types
+- Goal tracking requires historical balance records
+- Annual reports require aggregated data from multiple tables with month/year filtering 
 
 ## Key Features
-- Dashboard Komprehensif: Budget breakdown per category dengan color-coded segments
-- Income & Expense Tracking: Detailed transaction management dengan rich metadata
-- Net Worth Calculator: Comprehensive wealth tracking dengan asset/liability breakdown
-- Goal Tracking: Visual goal management dengan progress tracking
-- Annual Reports: Comprehensive yearly financial analysis dengan plan vs actual
+- Comprehensive Dashboard. Budget breakdown by category with color-coded segments
+- Income & Expense Tracking. Detailed transaction management with rich metadata
+- Net Worth Calculator. Comprehensive wealth tracking with a breakdown of assets and liabilities
+- Goal Tracking. Visual goal management with progress tracking
+- Annual Reports. Comprehensive yearly financial analysis comparing planned vs. actual figures
 
 ## The Solution
-- Laravel 12: Backend with mature ecosystem dengan 1000+ packages
-- Inertia JS: Eliminates API layer completely → 30% less boilerplate code
-- Chart.js: Data visualizations dan interactive charts
-- IndexedDB: Client-side storage untuk offline data
-- Service Workers: Offline functionality dan caching
+- Laravel 12: Backend with a mature ecosystem featuring over 1,000 packages
+- Inertia JS: Completely eliminates the API layer → 30% less boilerplate code
+- Chart.js: Data visualizations and interactive charts
+- IndexedDB: Client-side storage for offline data
+- Service Workers: Offline functionality and caching
 
 ## Outcomes & Impact
-- 100% offline capability dengan automatic sync
-- 90-day streak retention rate dari users
-- Average user saves 15% more setelah menggunakan app
-- 95% Mobile friendly
+- 100% offline capability with automatic sync
+- 90-day streak retention rate among users
+- On average, users save 15% more after using the app
+- 95% mobile-friendly
 
 ## Lessons Learned
-- Offline first design improves user experience significantly
-- Automatic sync logic harus robust terhadap conflicts
-- Financial data privacy sangat critical untuk users
-- Progressive enhancement strategy works well untuk feature rollout
+- An “offline-first” design significantly improves the user experience
+- The automatic sync logic must be robust against conflicts
+- Financial data privacy is critical for users
+- A progressive enhancement strategy works well for feature rollouts

@@ -6,6 +6,7 @@ export const categoryVariants = {
   personal: 'senary',
   academic: 'septenary',
   fun: 'octonary',
+  'team': 'quinary',
 } as const;
 
 export type CategoryVariant = (typeof categoryVariants)[keyof typeof categoryVariants];

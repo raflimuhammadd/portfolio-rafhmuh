@@ -20,44 +20,38 @@ links:
 ### Otomasi Monitoring Keselamatan Kerja dengan AI
 
 ## Overview
-APD Detection System adalah aplikasi intelligent yang memantau keselamatan kerja secara real-time menggunakan teknologi computer vision. Sistem ini otomatis mendeteksi ketika pekerja tidak memakai alat pelindung diri (APD) seperti helm, rompi keselamatan, atau masker — dan langsung mengirim alert ke supervisor.
-
-**Masalah yang Dipecahkan:**
-- ❌ Manual inspeksi memakan waktu dan tidak konsisten
-- ❌ Pelanggaran keselamatan sering terlewatkan
-- ❌ Tidak ada data real-time tentang compliance
-- ❌ Sulit membuktikan pelanggaran untuk dokumentasi
+The PPE Detection System is an intelligent application that monitors workplace safety in real time using computer vision technology. The system automatically detects when workers are not wearing personal protective equipment (PPE) such as helmets, safety vests, or masks—and immediately sends an alert to the supervisor.
 
 ## The Challenge
-- Time-consuming: Supervisor harus patroli berkelanjutan
-- Inconsistent: Tergantung kehadiran dan perhatian manusia
-- Reactive: Baru terdeteksi kalau terjadi insiden
-- Hard to track: Sulit membuat laporan compliance yang akurat
+- Time-consuming. Supervisors must conduct continuous patrols
+- Inconsistent. Depends on human presence and attention
+- Reactive. Incidents are only detected after they occur
+- Hard to track. It is difficult to generate accurate compliance reports
 
 ## Key Features
-- Deteksi Real-time
+- Real-time Detection
 - Smart Alert System
 - Interactive Dashboard
 - Multi-Source Support
 - Intelligent Tracking
 
 ## The Solution
-- Mendeteksi pelanggaran instant
-- Alert supervisor secara real-time
-- Menyimpan data untuk audit & compliance
-- Memberikan insights tentang pola pelanggaran
+- Detects violations instantly
+- Alerts supervisors in real time
+- Stores data for audits and compliance
+- Provides insights into violation patterns
 
 ## Outcomes & Impact
-- 95% untuk APD terdeteksi
-- 3.5 detik Response time alert
-- 98% Database reliability uptime
-- 40-60% Compliance rate dapat ditingkatkan
-- 30-50% Incident reduction: Estimasi fewer violations
+- 95% PPE detection rate
+- 3.5-second alert response time
+- 98% database reliability uptime
+- 40–60% improvement in compliance rate
+- 30–50% reduction in incidents: Estimated fewer violations
 
 ## Lessons Learned
-- Akurasi model sangat terpengaruh oleh kondisi pencahayaan
-- Perlu fine-tuning model untuk setiap lokasi yang berbeda
-- Indoor vs outdoor memerlukan adjustment yang berbeda
-- Too sensitive → banyak alert palsu → alert fatigue
-- Too loose → missed violations → safety risk
-- Database growth perlu direncanakan sejak awal
+- Model accuracy is greatly affected by lighting conditions
+- The model needs to be fine-tuned for each different location
+- Indoor and outdoor environments require different adjustments
+- Too sensitive → many false alerts → alert fatigue
+- Too lenient → missed violations → safety risk
+- Database growth needs to be planned for from the start

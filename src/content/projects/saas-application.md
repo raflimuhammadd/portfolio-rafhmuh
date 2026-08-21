@@ -20,32 +20,32 @@ links:
 # E-Commerce Platform
 
 ## Overview
-Modern e-commerce landing page untuk brand parfume premium yang mengintegrasikan Contentful Headless CMS untuk dynamic product management. Platform ini dibangun dengan React + Vite untuk optimal performance, menggabungkan conversion-focused copywriting dengan user-centric design.
+A modern e-commerce landing page for a premium perfume brand that integrates the Contentful Headless CMS for dynamic product management. The platform is built with React and Vite for optimal performance, combining conversion-focused copywriting with user-centric design.
 
 ## The Challenge
-- Scalable Content Management - Kebutuhan untuk manage product catalog tanpa hardcoding data atau melakukan code redeploy setiap ada perubahan
-- Performance-Critical - Fast-loading experience crucial untuk e-commerce, terutama dari mobile users
-- Conversion-Focused Architecture - Design yang strategis dengan clear CTA dan social proof untuk drive sales
-- Professional Branding - Visual identity yang reflect premium positioning brand parfume
+- Scalable Content Management - The need to manage the product catalog without hard-coding data or redeploying code every time a change is made
+- Performance-Critical - A fast-loading experience is crucial for e-commerce, especially for mobile users
+- Conversion-Focused Architecture - A strategic design with clear CTAs and social proof to drive sales
+- Professional Branding - A visual identity that reflects the perfume brand’s premium positioning
 
 ## Key Features
-- Real-time product data fetched dari Contentful CMS
-- Responsive Navigation
-- AIDA framework: Attention - grab visual interest immediately
-- WhatsApp integration dengan prefill message
+- Real-time product data fetched from the Contentful CMS
+- Responsive navigation
+- AIDA framework: Attention—grab visual interest immediately
+- WhatsApp integration with pre-filled messages
 - Accessibility-first approach
 
 
 ## The Solution
-- Decoupling content dari presentation enables agile product updates
-- Flat design constraints actually enhance UX by enforcing simplicity
+- Decoupling content from presentation enables agile product updates
+- Flat design constraints actually enhance the user experience by promoting simplicity
 
 ## Outcomes & Impact
-- 88% Fast Build Time - Vite delivers optimized bundle dalam seconds
-- Responsive layout optimized untuk mobile buyers and verage page load time 2.5 seconds
-- 100% CMS-Powered Scalability - Add products without code changes
+- 88% Faster Build Time - Vite delivers optimized bundles in seconds
+- Responsive layout optimized for mobile users and an average page load time of 2.5 seconds
+- 100% CMS-Powered Scalability - Add products without changing the code
 
 ## Lessons Learned
-- Mobile-first approach ensures consistent experience across devices
-- CMS-driven architecture scales naturally as product catalog grows
-- Direct messaging (WhatsApp) removes friction from purchase journey
+- A mobile-first approach ensures a consistent experience across devices
+- A CMS-driven architecture scales naturally as the product catalog grows
+- Direct messaging (WhatsApp) eliminates friction from the purchase journey
