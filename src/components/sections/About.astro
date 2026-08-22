@@ -1,6 +1,7 @@
 ---
 import Section from '../ui/Section.astro';
 import Badge from '../ui/Badge.astro';
+import Portrait from '../ui/Portrait.astro';
 ---
 
 <Section id="about" bgColor="bg-neo-white" pattern="grid" contentWidth="default">
@@ -48,15 +49,12 @@ import Badge from '../ui/Badge.astro';
       </div>
     </div>
 
-    <!-- Right: Decorative -->
-    <div class="hidden lg:flex items-center justify-center relative h-96">
-      <div class="absolute inset-0 border-8 border-neo-black bg-neo-secondary shadow-neo-xl rotate-6"></div>
-      <div class="absolute inset-8 border-8 border-neo-black bg-neo-muted shadow-neo-lg -rotate-3"></div>
-      <div class="absolute inset-16 border-8 border-neo-black bg-neo-accent shadow-neo-md rotate-2"></div>
-      <div class="relative z-10 text-center">
-        <p class="font-black text-5xl">📚</p>
-        <p class="font-black text-sm uppercase mt-4 tracking-wide">Always Learning</p>
-      </div>
+    <!-- Right: Portrait -->
+    <div class="hidden lg:flex items-center justify-center">
+      <Portrait 
+        src="/images/rafli-photo.jpg"
+        alt="Muhammad Rafli Pratama"
+      />
     </div>
   </div>
 </Section>
