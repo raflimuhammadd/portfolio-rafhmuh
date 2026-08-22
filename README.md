@@ -1,15 +1,15 @@
-# 🎨 Neo-Brutalism Portfolio
+# Neo-Brutalism Portfolio
 
 A bold, unapologetic portfolio website built with **Astro** and **Tailwind CSS**, showcasing the neo-brutalism design aesthetic.
 
-## 🚀 Tech Stack
+## Tech Stack
 
 - **Astro 7.2.2** - Static site generator
 - **Bun** - Fast JavaScript runtime & package manager
 - **Tailwind CSS 3** - Utility-first CSS framework
 - **TypeScript** - Type safety
 
-## 🎯 Features
+## Features
 
 - ✅ **Neo-brutalism Design System** - Hard borders, high contrast, mechanical interactions
 - ✅ **Single-page Portfolio** - Hero, About, Skills, Blog, Contact sections
@@ -18,7 +18,7 @@ A bold, unapologetic portfolio website built with **Astro** and **Tailwind CSS**
 - ✅ **Type-safe** - Full TypeScript support
 - ✅ **SEO Ready** - Meta tags, Open Graph, semantic HTML
 
-## 🎨 Design Philosophy
+## Design Philosophy
 
 This portfolio embraces **neo-brutalism** aesthetic principles:
 
@@ -29,7 +29,7 @@ This portfolio embraces **neo-brutalism** aesthetic principles:
 - **Bold typography** - Space Grotesk at 700-900 weights only
 - **Sticker layering** - Elements rotated and overlapped like physical stickers
 
-## 🛠️ Development
+## Development
 
 ```bash
 # Install dependencies
@@ -51,7 +51,7 @@ bun run typecheck
 bun run lint
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 portfolio-2/
@@ -72,7 +72,7 @@ portfolio-2/
 └── tsconfig.json      # TypeScript configuration
 ```
 
-## 🎨 Color Palette
+## Color Palette
 
 - **Background**: `#FFFDF5` (Cream)
 - **Foreground**: `#000000` (Pure Black)
@@ -80,14 +80,14 @@ portfolio-2/
 - **Secondary**: `#FFD93D` (Vivid Yellow)
 - **Muted**: `#C4B5FD` (Soft Violet)
 
-## 📝 Customization
+## Customization
 
 1. **Personal Info**: Edit `src/data/site.ts` and `src/data/socials.ts`
 2. **Skills**: Update `src/data/skills.ts`
 3. **Colors**: Modify `tailwind.config.mjs` theme colors
 4. **Content**: Edit section components in `src/components/sections/`
 
-## 🚀 Deployment
+## Deployment
 
 This site is ready to deploy to:
 
@@ -103,11 +103,11 @@ bun run build
 # Deploy dist/ folder
 ```
 
-## 📄 License
+## License
 
 MIT
 
-## 👤 Author
+## Author
 
 **Rafli Muhammad**
 
