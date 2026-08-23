@@ -11,12 +11,12 @@ A bold, unapologetic portfolio website built with **Astro** and **Tailwind CSS**
 
 ## Features
 
-- ✅ **Neo-brutalism Design System** - Hard borders, high contrast, mechanical interactions
-- ✅ **Single-page Portfolio** - Hero, About, Skills, Blog, Contact sections
-- ✅ **Fully Responsive** - Mobile-first design approach
-- ✅ **Performance Optimized** - Static site generation, ~56KB bundle
-- ✅ **Type-safe** - Full TypeScript support
-- ✅ **SEO Ready** - Meta tags, Open Graph, semantic HTML
+- **Neo-brutalism Design System** - Hard borders, high contrast, mechanical interactions
+- **Single-page Portfolio** - Hero, About, Skills, Blog, Contact sections
+- **Fully Responsive** - Mobile-first design approach
+- **Performance Optimized** - Static site generation, ~56KB bundle
+- **Type-safe** - Full TypeScript support
+- **SEO Ready** - Meta tags, Open Graph, semantic HTML
 
 ## Design Philosophy
 
@@ -107,14 +107,4 @@ bun run build
 
 MIT
 
-## Author
-
-**Rafli Muhammad**
-
-- LinkedIn: [@raflimuhammadd](https://www.linkedin.com/in/raflimuhammadd)
-- GitHub: [@raflimuhammadd](https://github.com/raflimuhammadd)
-- Medium: [@raflimuhammadd](https://medium.com/@raflimuhammadd)
-
 ---
-
-Built with ❤️ and brutalist precision.
