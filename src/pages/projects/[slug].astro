@@ -6,11 +6,11 @@ import Badge from '../../components/ui/Badge.astro';
 import Button from '../../components/ui/Button.astro';
 import SectionAccordion from '../../components/ui/SectionAccordion.astro';
 import ImageGalleryModal from '../../components/ui/ImageGalleryModal.astro';
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { getCategoryVariant } from '../../utils/categoryColors';
 import { SECTION_CONFIG, parseSection, parseOutcomes } from '../../utils/parseMarkdownSections';
-import type { ParsedSection, SectionConfig, OutcomeItem } from '../../utils/parseMarkdownSections';
+import type { ParsedSection, OutcomeItem } from '../../utils/parseMarkdownSections';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -21,7 +21,6 @@ export async function getStaticPaths() {
 }
 
 const { project } = Astro.props as { project: CollectionEntry<'projects'> };
-const { Content } = await render(project);
 
 const images = project.data.images.length > 0 ? project.data.images : [project.data.image];
 
@@ -33,11 +32,6 @@ const parsedSections = SECTION_CONFIG.map(config => {
   };
 });
 
-interface RenderedSection {
-  config: SectionConfig;
-  parsed: ParsedSection | null;
-  html: string;
-}
 
 const renderTextSection = (parsed: ParsedSection | null): string => {
   if (!parsed) return '<p class="text-neo-muted">Section not available</p>';
@@ -90,21 +84,6 @@ const renderTextWithBulletsSection = (parsed: ParsedSection | null): string => {
   }
   
   return html;
-};
-
-const renderSection = (section: RenderedSection): string => {
-  switch(section.config.type) {
-    case 'text':
-      return renderTextSection(section.parsed);
-    case 'text-with-bullets':
-      return renderTextWithBulletsSection(section.parsed);
-    case 'bullets':
-      return renderBulletSection(section.parsed);
-    case 'outcomes':
-      return '';
-    default:
-      return '';
-  }
 };
 
 ---
@@ -163,7 +142,7 @@ const renderSection = (section: RenderedSection): string => {
                 return (
                   <SectionAccordion title={section.config.title} defaultOpen={section.config.defaultOpen}>
                     <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
-                      {outcomes.map((item, idx) => (
+                      {outcomes.map((item) => (
                         item.isStat ? (
                           <div class="flex flex-col gap-2 border-4 border-neo-black bg-neo-white p-6 shadow-neo-md">
                             <span class="font-black text-5xl text-neo-accent">{item.value}</span>
