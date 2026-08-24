@@ -5,6 +5,7 @@ import Badge from '../ui/Badge.astro';
 import Button from '../ui/Button.astro';
 import { getCategoryVariant } from '../../utils/categoryColors';
 import { getCollection } from 'astro:content';
+import { truncate } from '../../utils/truncate';
 
 const allProjects = await getCollection('projects');
 const featuredProjects = allProjects.filter((p: typeof allProjects[0]) => p.data.featured).slice(0, 3);
@@ -37,7 +38,7 @@ const featuredProjects = allProjects.filter((p: typeof allProjects[0]) => p.data
             </h3>
 
             <p class="font-bold text-base leading-relaxed flex-1">
-              {project.data.description}
+              {truncate(project.data.description, 120)}
             </p>
 
             <div class="flex flex-wrap gap-2 pt-4 border-t-4 border-neo-black">
