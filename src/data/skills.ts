@@ -4,14 +4,12 @@ export const skills = {
     'Next.js',
     'TypeScript',
     'Tailwind CSS',
-    'Vue.js',
     'Astro',
   ],
   backend: [
     'Node.js',
     'Express.js',
     'Python',
-    'Django',
     'PostgreSQL',
     'MongoDB',
     'Redis',
@@ -21,7 +19,6 @@ export const skills = {
     'Google Cloud Platform',
     'Docker',
     'Kubernetes',
-    'Terraform',
     'CI/CD',
   ],
   tools: [
@@ -29,7 +26,6 @@ export const skills = {
     'Linux',
     'Nginx',
     'Postman',
-    'Jest',
     'Playwright',
   ],
 };
