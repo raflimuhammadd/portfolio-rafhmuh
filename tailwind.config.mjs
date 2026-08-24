@@ -16,6 +16,9 @@ export default {
         'neo-septenary': '#6BCB77',
         'neo-octonary': '#FF9F45',
         'neo-white': '#FFFFFF',
+        'mac-red': '#FF5F57',
+        'mac-yellow': '#FEBC2E',
+        'mac-green': '#28C840',
       },
       fontFamily: {
         space: ['Space Grotesk', 'sans-serif'],
