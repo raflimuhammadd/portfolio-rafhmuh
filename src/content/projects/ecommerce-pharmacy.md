@@ -7,14 +7,14 @@ featured: true
 description: "Full-stack e-commerce platform dengan integrasi Midtrans payment gateway, admin dashboard dan customer-facing storefront untuk mengelola penjualan farmasi dengan relational database design dan API-first architecture."
 image: "/images/projects/ecommerce-hero.jpg"
 images:
-  -  "/images/projects/ecommerce-pharmacy/page-1.png"
-  -  "/images/projects/ecommerce-pharmacy/page-2.png"
-  -  "/images/projects/ecommerce-pharmacy/page-3.png"
-  -  "/images/projects/ecommerce-pharmacy/page-4.png"
-  -  "/images/projects/ecommerce-pharmacy/page-5.png"
-  -  "/images/projects/ecommerce-pharmacy/page-6.png"
-  -  "/images/projects/ecommerce-pharmacy/page-7.png"
-  -  "/images/projects/ecommerce-pharmacy/page-8.png"
+  -  "/images/projects/ecommerce-pharmacy/page-1.webp"
+  -  "/images/projects/ecommerce-pharmacy/page-2.webp"
+  -  "/images/projects/ecommerce-pharmacy/page-3.webp"
+  -  "/images/projects/ecommerce-pharmacy/page-4.webp"
+  -  "/images/projects/ecommerce-pharmacy/page-5.webp"
+  -  "/images/projects/ecommerce-pharmacy/page-6.webp"
+  -  "/images/projects/ecommerce-pharmacy/page-7.webp"
+  -  "/images/projects/ecommerce-pharmacy/page-8.webp"
 techStack: [ "Laravel 10", "MySQL 8", "Redis", "Bootstrap 5", "Blade", "Sanctum API", "Midtrans Payment Gateway", "Maatwebsite/Excel", "DOMPDF"]
 links:
   github: "https://github.com/raflimuhammadd/ecommerce-pharmacy"

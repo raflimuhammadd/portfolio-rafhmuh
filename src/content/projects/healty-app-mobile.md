@@ -7,7 +7,7 @@ featured: true
 description: "Mobile app for tracking personal calorie intake and managing diet categories with image support, real-time visualization, and offline-first architecture using React Native, Expo, Supabase, and Kinde authentication."
 image: "/images/projects/cloud-hero.jpg"
 images:
-  - "/images/projects/healty-app-mobile/page-1.png"
+  - "/images/projects/healty-app-mobile/page-1.webp"
 techStack: ["React Native", "Expo SDK 52", "Supabase (postgreSQL)", "Kinde Authentication", "React Native Pie Chart", "Async Storage"]
 links:
   github: "https://github.com/raflimuhammadd/healty-planning-apps"

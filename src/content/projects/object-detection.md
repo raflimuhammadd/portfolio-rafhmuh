@@ -7,10 +7,10 @@ featured: true
 description: "Real-time workplace safety system that automatically monitors worker PPE compliance using computer vision, sending instant alerts when safety gear is missing."
 image: "/images/projects/apd/hero.jpg"
 images:
-  - "/images/projects/object-detection/page-1.png"
-  - "/images/projects/object-detection/page-2.png"
-  - "/images/projects/object-detection/page-3.png"
-  - "/images/projects/object-detection/page-4.png"
+  - "/images/projects/object-detection/page-1.webp"
+  - "/images/projects/object-detection/page-2.webp"
+  - "/images/projects/object-detection/page-3.webp"
+  - "/images/projects/object-detection/page-4.webp"
 techStack: ["Python", "Streamlit", "YOLOv11", "SQLite", "Telegram API"]
 links:
   github: "https://github.com/raflimuhammadd/object-detection"

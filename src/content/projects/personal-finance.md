@@ -7,11 +7,11 @@ featured: true
 description: "Progressive Web App for tracking personal finances with offline-first design and rich data visualization."
 image: "/images/projects/personal-hero.jpg"
 images:
-  - "/images/projects/finance/page-1.png"
-  - "/images/projects/finance/page-2.png"
-  - "/images/projects/finance/page-3.png"
-  - "/images/projects/finance/page-4.png"
-  - "/images/projects/finance/page-5.png"
+  - "/images/projects/finance/page-1.webp"
+  - "/images/projects/finance/page-2.webp"
+  - "/images/projects/finance/page-3.webp"
+  - "/images/projects/finance/page-4.webp"
+  - "/images/projects/finance/page-5.webp"
   - "/images/projects/finance/login-page.png"
 techStack: ["Laravel 12", "React 18", "Inertia JS", "SPA", "Indexed DB"]
 links:

@@ -7,8 +7,8 @@ featured: false
 description: "Fun Project Pong Ping Go Play"
 image: "/images/projects/cloud-hero.jpg"
 images:
-  - "/images/projects/pong-ping-go/page-1.png"
-  - "/images/projects/pong-ping-go/page-2.png"
+  - "/images/projects/pong-ping-go/page-1.webp"
+  - "/images/projects/pong-ping-go/page-2.webp"
 techStack: ["HTML5", "Vanilla Javascript", "Bulma CSS", "Canvas Confetty"]
 links:
   github: "https://github.com/raflimuhammadd/score-keeper"

@@ -7,10 +7,10 @@ featured: true
 description: "A responsive restaurant landing page for Dapoer Bunda with dark/light theme toggle, smooth animations, and mobile-first design showcasing menu, services, and contact information."
 image: "/images/projects/cloud-hero.jpg"
 images:
-  - "/images/projects/responsive-restaurant-landing-page/page-1.png"
-  - "/images/projects/responsive-restaurant-landing-page/page-2.png"
-  - "/images/projects/responsive-restaurant-landing-page/page-3.png"
-  - "/images/projects/responsive-restaurant-landing-page/page-4.png"
+  - "/images/projects/responsive-restaurant-landing-page/page-1.webp"
+  - "/images/projects/responsive-restaurant-landing-page/page-2.webp"
+  - "/images/projects/responsive-restaurant-landing-page/page-3.webp"
+  - "/images/projects/responsive-restaurant-landing-page/page-4.webp"
 techStack: ["HTML5", "Vanilla Javascript", "Bulma CSS", "Canvas Confetty"]
 links:
   github: "https://github.com/raflimuhammadd/dapoer-bunda-restaurant"

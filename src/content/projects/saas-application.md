@@ -7,10 +7,10 @@ featured: true
 description: "Modern e-commerce landing page untuk brand parfume premium dengan Contentful Headless CMS integration."
 image: "/images/projects/ecommerce-hero.jpg"
 images:
-  - "/images/projects/saas-aplication/page-1.png"
-  - "/images/projects/saas-aplication/page-2.png"
-  - "/images/projects/saas-aplication/page-3.png"
-  - "/images/projects/saas-aplication/page-4.jpeg"
+  - "/images/projects/saas-aplication/page-1.webp"
+  - "/images/projects/saas-aplication/page-2.webp"
+  - "/images/projects/saas-aplication/page-3.webp"
+  - "/images/projects/saas-aplication/page-4.webp"
 techStack: ["React 19", "Vite", "Contentful CMS", "FontAwesome", "Flat Design CSS"]
 links:
   github: "https://github.com/raflimuhammadd/parfume-saas"

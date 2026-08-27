@@ -7,10 +7,10 @@ featured: true
 description: "Enterprise-grade form management system with dynamic form creation, submission tracking, and role-based access control. Built with modern web technologies for high performance and security"
 image: "/images/projects/cloud-hero.jpg"
 images:
-  - "/images/projects/form-app/page-1.png"
-  - "/images/projects/form-app/page-2.png"
-  - "/images/projects/form-app/page-3.png"
-  - "/images/projects/form-app/page-4.png"
+  - "/images/projects/form-app/page-1.webp"
+  - "/images/projects/form-app/page-2.webp"
+  - "/images/projects/form-app/page-3.webp"
+  - "/images/projects/form-app/page-4.webp"
 techStack:  ["Node 18", "Next JS", "Typescript", "PostgreSQL 16", "AWS S3", "Tailwind CSS"]
 links:
   github: ""

@@ -7,13 +7,13 @@ featured: true
 description: "Interactive web-based infrastructure monitoring system for managing IT applications and hardware across Indonesian ports with real-time SVG map visualization and regional management."
 image: "/images/projects/cloud-hero.jpg"
 images:
-  - "/images/projects/dashboard-map/page-1.png"
-  - "/images/projects/dashboard-map/page-2.png"
-  - "/images/projects/dashboard-map/page-3.png"
-  - "/images/projects/dashboard-map/page-4.png"
-  - "/images/projects/dashboard-map/page-5.png"
-  - "/images/projects/dashboard-map/page-6.png"
-  - "/images/projects/dashboard-map/page-7.png"
+  - "/images/projects/dashboard-map/page-1.webp"
+  - "/images/projects/dashboard-map/page-2.webp"
+  - "/images/projects/dashboard-map/page-3.webp"
+  - "/images/projects/dashboard-map/page-4.webp"
+  - "/images/projects/dashboard-map/page-5.webp"
+  - "/images/projects/dashboard-map/page-6.webp"
+  - "/images/projects/dashboard-map/page-7.webp"
 techStack:  ["Next.js 16", "React 19", "TypeScript 5", "Tailwind CSS 4", "Zustand", "Drizzle ORM", "PostgreSQL 17", "MinIO 9", "Shadcn/UI", "React Hook Form", "Zod"]
 links:
   github: ""

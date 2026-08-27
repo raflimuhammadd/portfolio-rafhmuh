@@ -7,7 +7,7 @@ featured: true
 description: "Backend infrastructure optimization for AI chatbot system using Google Cloud Platform, Cloud Storage, and Cloud Run. Built scalable, containerized deployment with 88-92% intent classification accuracy and 99.5% uptime."
 image: "/images/projects/cloud-hero.jpg"
 images:
-  - "/images/projects/chatbot-infra/page-1.png"
+  - "/images/projects/chatbot-infra/page-1.webp"
 techStack: ["Python 3.11", "Flask", "Keras", "NLTK", "Google Cloud Platform", "Cloud Run", "Cloud Storage", "Docker", "Gunicord", "Cloud Build", "Cloud Logging", "Artifact Registry"]
 links:
   github: "https://github.com/My-UMKM/MyUmkmApps"
