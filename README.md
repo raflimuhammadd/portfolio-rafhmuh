@@ -87,22 +87,6 @@ portfolio-2/
 3. **Colors**: Modify `tailwind.config.mjs` theme colors
 4. **Content**: Edit section components in `src/components/sections/`
 
-## Deployment
-
-This site is ready to deploy to:
-
-- **Vercel** (recommended)
-- **Netlify**
-- **Cloudflare Pages**
-- **GitHub Pages**
-
-```bash
-# Build
-bun run build
-
-# Deploy dist/ folder
-```
-
 ## License
 
 MIT
