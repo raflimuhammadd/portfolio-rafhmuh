@@ -12,7 +12,7 @@ images:
   - "/images/projects/finance/page-3.webp"
   - "/images/projects/finance/page-4.webp"
   - "/images/projects/finance/page-5.webp"
-  - "/images/projects/finance/login-page.png"
+  - "/images/projects/finance/login-page.webp"
 techStack: ["Laravel 12", "React 18", "Inertia JS", "SPA", "Indexed DB"]
 links:
   github: "https://github.com/raflimuhammadd/cuan-planner"
@@ -46,7 +46,7 @@ A Progressive Web App for tracking personal finances with an offline-first desig
 
 ## Outcomes & Impact
 - 100% offline capability with automatic sync
-- 90-day streak retention rate among users
+- 90 day streak retention rate among users
 - On average, users save 15% more after using the app
 - 95% mobile-friendly
 

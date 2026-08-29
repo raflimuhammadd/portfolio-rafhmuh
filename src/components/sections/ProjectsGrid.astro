@@ -6,9 +6,12 @@ import Button from '../ui/Button.astro';
 import { getCategoryVariant } from '../../utils/categoryColors';
 import { getCollection } from 'astro:content';
 import { truncate } from '../../utils/truncate';
+import { featuredProjectSlugs } from '@/data/featuredProject';
 
 const allProjects = await getCollection('projects');
-const featuredProjects = allProjects.filter((p: typeof allProjects[0]) => p.data.featured).slice(0, 3);
+const featuredProjects = featuredProjectSlugs
+  .map(slug => allProjects.find((p: typeof allProjects[0]) => p.data.slug === slug))
+  .filter((p): p is typeof allProjects[0] => p !== undefined);
 ---
 
 <Section id="projects" bgColor="bg-neo-bg" pattern="dots" contentWidth="wide">
