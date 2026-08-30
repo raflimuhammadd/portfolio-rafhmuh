@@ -9,7 +9,6 @@ export const skills = {
   backend: [
     'Node.js',
     'Express.js',
-    'Python',
     'PostgreSQL',
     'MongoDB',
     'Redis',
@@ -18,7 +17,6 @@ export const skills = {
     'AWS (EC2, S3, Lambda)',
     'Google Cloud Platform',
     'Docker',
-    'Kubernetes',
     'CI/CD',
   ],
   tools: [
