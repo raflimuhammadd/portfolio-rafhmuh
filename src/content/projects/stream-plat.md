@@ -15,7 +15,7 @@ images:
   - "/images/projects/streaming-plat/page-5.webp"
 techStack: ["React 19", "Vite 8", "Tailwind CSS 4", "Zustand 5", "Redux Toolkit 2", "Node.js", "Express 5", "MySQL 8.4", "Midtrans", "Nodemailer", "Multer"]
 links:
-  github: "https://github.com/raflimuhammadd/smart-attendance"
+  github: "https://github.com/raflimuhammadd/CHILL"
   demo: "https://chill-kill.vercel.app/"
 ---
 
