@@ -16,7 +16,7 @@ images:
 techStack: ["React 19", "Vite 8", "Tailwind CSS 4", "Zustand 5", "Redux Toolkit 2", "Node.js", "Express 5", "MySQL 8.4", "Midtrans", "Nodemailer", "Multer"]
 links:
   github: "https://github.com/raflimuhammadd/smart-attendance"
-  demo: "https://attendance.raflimuhammadd.dev"
+  demo: "https://chill-kill.vercel.app/"
 ---
 
 # Capstone Project: Smart Attendance System
