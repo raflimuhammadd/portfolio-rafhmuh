@@ -161,18 +161,18 @@ const renderTextWithBulletsSection = (parsed: ParsedSection | null): string => {
               
               return (
                 <SectionAccordion title={section.config.title} defaultOpen={section.config.defaultOpen}>
-                  {section.config.type === 'text' && (
+                   {section.config.type === 'text' && (
                     <div class="prose max-w-none space-y-4">
-                      <Fragment set:html={renderTextSection(section.parsed)} />
+                      <div set:html={renderTextSection(section.parsed)} />
                     </div>
                   )}
 
                   {section.config.type === 'text-with-bullets' && (
-                    <Fragment set:html={renderTextWithBulletsSection(section.parsed)} />
+                    <div set:html={renderTextWithBulletsSection(section.parsed)} />
                   )}
 
                   {section.config.type === 'bullets' && (
-                    <Fragment set:html={renderBulletSection(section.parsed)} />
+                    <div set:html={renderBulletSection(section.parsed)} />
                   )}
                 </SectionAccordion>
               );
@@ -277,27 +277,7 @@ const renderTextWithBulletsSection = (parsed: ParsedSection | null): string => {
   <Footer />
 </BaseLayout>
 
-<style>
-  .prose {
-    @apply max-w-none;
-  }
-  
-  .prose p {
-    @apply font-bold leading-relaxed text-lg mb-4;
-  }
-  
-  .prose ul {
-    @apply list-inside list-disc font-bold mb-4;
-  }
-  
-  .prose li {
-    @apply mb-2;
-  }
-  
-  .prose strong {
-    @apply font-black text-neo-accent;
-  }
-</style>
+
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
