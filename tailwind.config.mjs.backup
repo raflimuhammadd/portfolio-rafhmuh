@@ -3,10 +3,10 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
-      colors: {
-        'neo-bg': '#FFFDF5',
-        'neo-black': '#000000',
-        'neo-accent': '#FF6B6B',
+      @theme {
+        'neo-bg': #FFFDF5;
+        'neo-black': #000000;
+        'neo-accent': #FF6B6B;
         'neo-secondary': '#FFD93D',
         'neo-tertiary': '#5FD3BC',
         'neo-quaternary': '#A78BFA',

@@ -1,8 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800;900&display=swap');
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Custom Colors */
+  --color-neo-bg: #fffdf5;
+  --color-neo-black: #000000;
+  --color-neo-accent: #ff6b6b;
+  --color-neo-secondary: #ffd93d;
+  --color-neo-tertiary: #5fd3bc;
+  --color-neo-quaternary: #a78bfa;
+  --color-neo-quinary: #f87171;
+  --color-neo-senary: #60a5fa;
+  --color-neo-muted: #c4b5fd;
+  --color-neo-septenary: #6bcb77;
+  --color-neo-octonary: #ff9f45;
+  --color-neo-white: #ffffff;
+  --color-mac-red: #ff5f57;
+  --color-mac-yellow: #febc2e;
+  --color-mac-green: #28c840;
+
+  /* Custom Font Family */
+  --font-family-space: 'Space Grotesk', sans-serif;
+
+  /* Custom Border Width */
+  --border-width-4: 4px;
+  --border-width-6: 6px;
+  --border-width-8: 8px;
+
+  /* Custom Spacing */
+  --spacing-10: 2.5rem;
+
+  /* Custom Box Shadows */
+  --shadow-neo-sm: 4px 4px 0px 0px #000;
+  --shadow-neo-md: 8px 8px 0px 0px #000;
+  --shadow-neo-lg: 12px 12px 0px 0px #000;
+  --shadow-neo-xl: 16px 16px 0px 0px #000;
+
+  /* Custom Animations */
+  --animate-spin-slow: spin 10s linear infinite;
+  --animate-earthquake: earthquake 3s ease-in-out infinite;
+
+  /* Custom Keyframes */
+  @keyframes earthquake {
+    0%, 100% { transform: rotate(1deg) translate(0, 0); }
+    10% { transform: rotate(0.8deg) translate(-1px, -2px); }
+    20% { transform: rotate(1.2deg) translate(-3px, 0px); }
+    30% { transform: rotate(0.9deg) translate(3px, 2px); }
+    40% { transform: rotate(1.1deg) translate(1px, -1px); }
+    50% { transform: rotate(1deg) translate(-1px, 2px); }
+    60% { transform: rotate(1.1deg) translate(-3px, 1px); }
+    70% { transform: rotate(0.9deg) translate(2px, 1px); }
+    80% { transform: rotate(1.2deg) translate(-1px, -1px); }
+    90% { transform: rotate(0.8deg) translate(2px, 2px); }
+  }
+}
 
 /* Neo-brutalism utilities */
 @layer utilities {
