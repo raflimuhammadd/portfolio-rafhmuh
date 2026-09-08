@@ -30,7 +30,9 @@
   "dependencies": {
     "@astrojs/netlify": "^8.2.5",
     "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.5.0",
     "groq-sdk": "^1.6.0",
-    "lucide-astro": "^0.556.0"
+    "lucide-astro": "^0.556.0",
+    "zod": "^4.5.4"
   }
 }
