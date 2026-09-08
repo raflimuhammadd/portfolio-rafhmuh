@@ -4,8 +4,10 @@
     "ignoreDeprecations": "5.0",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["node"],
+    "moduleResolution": "bundler"
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", ".astro/types.d.ts"],
   "exclude": ["dist", "node_modules"]
 }

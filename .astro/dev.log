@@ -1,12 +1,17 @@
+{"message":"Enabling sessions with Netlify Blobs","label":"@astrojs/netlify","level":"info"}
 {"message":"connected.","label":"vite","level":"info"}
+{"message":"Environment loaded","label":"vite","level":"info"}
+{"message":"Middleware loaded. Emulating features: aiGateway, blobs, database, edgeFunctions, functions, geolocation, headers, images, redirects, static.","label":"vite","level":"info"}
+{"message":"💭 Linking this project to a Netlify site lets you deploy your site, use any environment variables defined on your team and site and much more. Run npx netlify init to get started.","label":"vite","level":"info"}
 {"message":"Generated 0ms","label":"types","level":"info"}
 {"message":"connected.","label":"vite","level":"info"}
+[0m[1m[31merror[0m: unexpected argument '--allow-scripts' found
 {"message":"Syncing content","label":"content","level":"info"}
-{"message":"Synced content","label":"content","level":"info"}
-{"message":" astro  v7.2.2 ready in 980 ms\n┃ Local    http://localhost:4321/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
-{"message":"watching for file changes...","label":null,"level":"info"}
-{"message":"[200] /projects/port-dashboard 46ms","label":null,"level":"info"}
-{"message":"[200] /projects/port-dashboard 5ms","label":null,"level":"info"}
 {"message":"\n update  ▶ New version of Astro available: 7.3.1\n  Run bun x @astrojs/upgrade to update\n","label":"SKIP_FORMAT","level":"warn"}
-{"message":"[200] /projects/ecommerce-platform 3ms","label":null,"level":"info"}
-{"message":"[200] /projects/capstone-attendance 2ms","label":null,"level":"info"}
+{"message":"Synced content","label":"content","level":"info"}
+{"message":"Port 4321 is in use, trying another one...","label":"vite","level":"info"}
+{"message":"Port 4322 is in use, trying another one...","label":"vite","level":"info"}
+{"message":"Port 4323 is in use, trying another one...","label":"vite","level":"info"}
+{"message":" astro  v7.2.2 ready in 2758 ms\n┃ Local    http://localhost:4324/\n┃ Network  use --host to expose","label":"SKIP_FORMAT","level":"info"}
+{"message":"watching for file changes...","label":null,"level":"info"}
+{"message":"[UnhandledRejection] Astro detected an unhandled rejection. Here's the stack trace:\nError: Could not establish a connection to the Netlify Edge Functions local development server\n    at EdgeFunctionsHandler.waitForDenoServer (file:///Users/mac/projects/portfolio-2/node_modules/@netlify/edge-functions-dev/dist/node/main.js:317:15)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async EdgeFunctionsHandler.initialize (file:///Users/mac/projects/portfolio-2/node_modules/@netlify/edge-functions-dev/dist/node/main.js:277:7)\n  Hint:\n    Make sure your promises all have an `await` or a `.catch()` handler.\n  Error reference:\n    https://docs.astro.build/en/reference/errors/unhandled-rejection/\n  Stack trace:\n    at /Users/mac/projects/portfolio-2/node_modules/@netlify/edge-functions-dev/dist/node/main.js:317:15\n    [...] See full stack trace in the browser, or rerun with --verbose.","label":null,"level":"error"}

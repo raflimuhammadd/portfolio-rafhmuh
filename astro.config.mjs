@@ -1,9 +1,11 @@
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import netlify from '@astrojs/netlify';
 
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  site: 'https://raflimuhammadd.dev',
+  adapter: netlify(), 
+  site: 'https://portfolio-raffmuhh.netlify.app/',
 });
