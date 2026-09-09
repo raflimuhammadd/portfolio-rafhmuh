@@ -14,7 +14,7 @@ import type { ParsedSection, OutcomeItem } from '../../utils/parseMarkdownSectio
 
 const { slug } = Astro.params;
 const projects = await getCollection('projects');
-const project = projects.find(p => p.data.slug === slug);
+const project = projects.find(p => p.data.slug === slug) as CollectionEntry<'projects'> | undefined;
 
 if (!project) {
   return Astro.redirect('/projects');
