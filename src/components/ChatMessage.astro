@@ -12,43 +12,12 @@ const messageStyles = message.role === 'user'
   ? 'bg-neo-accent ml-auto'
   : 'bg-neo-white';
 
-// Clean up markdown formatting from AI responses
-function cleanMarkdownText(text: string): string {
-  // Step 1: Remove markdown bold markers ** but keep text
-  let cleaned = text.replace(/\*\*(.*?)\*\*/g, '$1');
-  
-  // Step 2: Convert markdown lists (- item) to bullets (• item)
-  cleaned = cleaned.replace(/^- /gm, '• ');
-  
-  // Step 3: Remove markdown table syntax (|, -, :) but keep content
-  // First, handle table header/separator rows
-  cleaned = cleaned.replace(/\|[-\s:]+\|/g, '');
-  // Then handle table cells
-  cleaned = cleaned.replace(/\s*\|\s*/g, ' ');
-  
-  // Step 4: Remove markdown links but keep text [text](url) -> text
-  cleaned = cleaned.replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1');
-  
-  // Step 5: Normalize excessive line breaks (3+ to 2)
-  cleaned = cleaned.replace(/\n{3,}/g, '\n\n');
-  
-  // Step 6: Remove remaining asterisks and extra formatting symbols
-  cleaned = cleaned.replace(/\*{1,}/g, '');
-  cleaned = cleaned.replace(/_+/g, '');
-  
-  // Step 7: Clean up extra whitespace
-  cleaned = cleaned.replace(/ {2,}/g, ' ');
-  
-  // Step 8: Trim whitespace
-  cleaned = cleaned.trim();
-  
-  return cleaned;
-}
+
 ---
 
 <div class={`message ${message.role} ${messageStyles}`}>
   <div class="message-content">
-    {cleanMarkdownText(message.content)}
+    {message.content}
   </div>
   <div class="message-timestamp">
     {new Date(message.timestamp).toLocaleTimeString()}

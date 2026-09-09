@@ -18,7 +18,7 @@ import ChatInput from './ChatInput.astro';
   <div id="chat-modal" class="chat-modal hidden">
     <!-- Header -->
     <div class="chat-header">
-      <h3>BrutAssistant</h3>
+      <h3>Personal Assistant</h3>
       <button id="close-chat" class="close-button" aria-label="Close chat">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
           <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -156,6 +156,161 @@ import ChatInput from './ChatInput.astro';
     font-size: 1rem;
     line-height: 1.6;
     word-wrap: break-word;
+    color: #333;
+  }
+
+  /* ========================================
+     CLEAN TYPOGRAPHY FOR MARKDOWN CONTENT
+     ======================================== */
+
+  /* Headings - Clean hierarchy */
+  .message-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem 0;
+    color: #111;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 0.5rem;
+  }
+
+  /* Paragraphs - Consistent spacing */
+  .message-content p {
+    margin: 0 0 0.75rem 0;
+    line-height: 1.6;
+  }
+
+  .message-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Lists - Clean bullets */
+  .message-content ul,
+  .message-content ol {
+    margin: 0.75rem 0;
+    padding-left: 1.75rem;
+    list-style-position: outside;
+  }
+
+  .message-content ul {
+    list-style-type: disc;
+  }
+
+  .message-content li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+    padding-left: 0.25rem;
+  }
+
+  .message-content li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Bold emphasis */
+  .message-content strong,
+  .message-content b {
+    font-weight: 600;
+    color: #111;
+  }
+
+  /* Inline code */
+  .message-content code {
+    background: #f5f5f5;
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 0.9em;
+    color: #d63384;
+    border: 1px solid #e5e5e5;
+  }
+
+  .message-content pre code {
+    display: block;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    overflow-x: auto;
+    color: #333;
+  }
+
+  /* Tables - Clean design */
+  .message-content table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .message-content thead {
+    background: #f8f9fa;
+  }
+
+  .message-content th {
+    font-weight: 600;
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    border-bottom: 2px solid #dee2e6;
+    color: #111;
+  }
+
+  .message-content td {
+    padding: 0.65rem 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: top;
+  }
+
+  .message-content tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .message-content tbody tr:hover {
+    background: #fafafa;
+  }
+
+  /* Collapsible tables (> 3 rows) - Default OPEN */
+  .message-content details.collapsible-table {
+    margin: 1rem 0;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .message-content details.collapsible-table > summary {
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    cursor: pointer;
+    font-weight: 500;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #555;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .message-content details.collapsible-table > summary:hover {
+    background: #e9ecef;
+  }
+
+  .message-content details.collapsible-table > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .message-content details.collapsible-table[open] > summary {
+    border-bottom: 1px solid #e5e5e5;
+    margin-bottom: 0;
+  }
+
+  .message-content details.collapsible-table > table {
+    margin: 0;
+    border: none;
+    border-radius: 0;
   }
 
   .message-timestamp {
@@ -229,6 +384,30 @@ import ChatInput from './ChatInput.astro';
       font-size: 0.95rem;
     }
 
+    .message-content h3 {
+      font-size: 1.05rem;
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    .message-content table {
+      font-size: 0.85rem;
+    }
+
+    .message-content th,
+    .message-content td {
+      padding: 0.5rem 0.4rem;
+    }
+
+    .message-content details.collapsible-table > summary {
+      padding: 0.6rem 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .message-content ul,
+    .message-content ol {
+      padding-left: 1.5rem;
+    }
+
     .chat-button {
       bottom: 1.5rem;
       right: 1.5rem;
@@ -241,6 +420,7 @@ import ChatInput from './ChatInput.astro';
 <script>
   import { saveMessages, loadMessages } from '../utils/chat-storage';
   import type { Message } from '../lib/types/chat';
+  import { sanitizeAndRenderMarkdown } from '../utils/security';
 
   let isOpen = false;
   let messages: Message[] = [];
@@ -365,12 +545,16 @@ import ChatInput from './ChatInput.astro';
       </div>
     `;
 
-    // Render all messages
+    // Render all messages with markdown support
     messages.forEach(msg => {
       const messageEl = document.createElement('div');
       messageEl.className = `message ${msg.role}`;
+      
+      // 🔒 NEW: Sanitize and render markdown
+      const safeHTML = sanitizeAndRenderMarkdown(msg.content);
+      
       messageEl.innerHTML = `
-        <div class="message-content">${msg.content}</div>
+        <div class="message-content">${safeHTML}</div>
         <div class="message-timestamp">${new Date(msg.timestamp).toLocaleTimeString()}</div>
       `;
       container.appendChild(messageEl);

@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { z } from 'zod';
 import { generateChatResponse } from '../lib/ai/groq-client';
 import type { ChatRequest, ChatResponse, Message } from '../lib/types/chat';
+import { isPortfolioQuestion, getSuggestionForNonPortfolio } from '../utils/security';
 
 // Validation schema
 const MessageSchema = z.object({
@@ -23,6 +24,19 @@ export const POST: APIRoute = async ({ request }) => {
     
     // 2. Validate input
     const validatedData = ChatRequestSchema.parse(body) as ChatRequest;
+    
+    // Portfolio question filter
+    if (!isPortfolioQuestion(validatedData.message)) {
+      const suggestion = getSuggestionForNonPortfolio();
+      
+      return new Response(JSON.stringify({
+        success: false,
+        error: `I specialize in Rafli's portfolio. How about asking: "${suggestion}"?`
+      } as ChatResponse), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' }
+      });
+    }
     
     // 3. Generate AI response
     const aiResponse = await generateChatResponse(
