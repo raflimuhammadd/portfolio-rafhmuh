@@ -12,15 +12,13 @@ import { getCategoryVariant } from '../../utils/categoryColors';
 import { SECTION_CONFIG, parseSection, parseOutcomes } from '../../utils/parseMarkdownSections';
 import type { ParsedSection, OutcomeItem } from '../../utils/parseMarkdownSections';
 
-export async function getStaticPaths() {
-  const projects = await getCollection('projects');
-  return projects.map((project: CollectionEntry<'projects'>) => ({
-    params: { slug: project.data.slug },
-    props: { project },
-  }));
-}
+const { slug } = Astro.params;
+const projects = await getCollection('projects');
+const project = projects.find(p => p.data.slug === slug);
 
-const { project } = Astro.props as { project: CollectionEntry<'projects'> };
+if (!project) {
+  return Astro.redirect('/projects');
+}
 
 const images = project.data.images.length > 0 ? project.data.images : [project.data.image];
 
