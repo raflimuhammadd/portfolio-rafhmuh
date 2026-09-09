@@ -2,5 +2,5 @@
     publish = "dist"
     command = "npm run build"
 
-[funtions]
+[functions]
     directory = "dist/functions"
