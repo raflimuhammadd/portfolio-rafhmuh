@@ -23,7 +23,7 @@ if (!project) {
 const images = project.data.images.length > 0 ? project.data.images : [project.data.image];
 
 const parsedSections = SECTION_CONFIG.map(config => {
-  const parsed = parseSection(config.heading, project.body);
+  const parsed = parseSection(config.heading, project.body ?? '');
   return {
     config,
     parsed
